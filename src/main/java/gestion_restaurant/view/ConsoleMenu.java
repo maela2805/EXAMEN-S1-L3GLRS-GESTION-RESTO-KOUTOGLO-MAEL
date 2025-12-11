@@ -232,4 +232,6 @@ public class ConsoleMenu {
         quartierService.delete(id);
         System.out.println("Quartier supprimé.");
     }
+
+    
 }
