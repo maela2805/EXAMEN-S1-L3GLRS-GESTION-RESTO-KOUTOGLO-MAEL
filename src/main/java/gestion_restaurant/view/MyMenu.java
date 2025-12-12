@@ -8,14 +8,17 @@ import gestion_restaurant.service.ZoneService;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
+public class MyMenu {
+   
 
-public class ConsoleMenu {
 
     private final ZoneService zoneService;
     private final QuartierService quartierService;
     private final Scanner scanner = new Scanner(System.in);
 
-    public ConsoleMenu(ZoneService zoneService, QuartierService quartierService) {
+  
+
+    public MyMenu(ZoneService zoneService, QuartierService quartierService) {
         this.zoneService = zoneService;
         this.quartierService = quartierService;
     }
@@ -235,3 +238,4 @@ public class ConsoleMenu {
 
     
 }
+
