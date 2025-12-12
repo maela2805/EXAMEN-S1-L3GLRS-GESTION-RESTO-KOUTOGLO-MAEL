@@ -9,20 +9,13 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
 public class MyMenu {
-   
-
-
     private final ZoneService zoneService;
     private final QuartierService quartierService;
     private final Scanner scanner = new Scanner(System.in);
-
-  
-
     public MyMenu(ZoneService zoneService, QuartierService quartierService) {
         this.zoneService = zoneService;
         this.quartierService = quartierService;
     }
-
     public void start() {
         System.out.println("=== Gestion Restaurant===");
         boolean exit = false;

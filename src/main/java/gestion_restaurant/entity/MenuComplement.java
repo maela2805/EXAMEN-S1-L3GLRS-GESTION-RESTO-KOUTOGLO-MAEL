@@ -8,9 +8,19 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class MenuComplement {
-    private MenuComplementId id;
+    private Long id;
+    private Long menuId;
+    private Long complementId;
+    private Integer quantite = 1;
+    private String role;
     private Menu menu;
     private Complement complement;
-    private Integer quantite = 1;
-    private String role; // ex "frite" ou "boisson"
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+        this.menuId = (menu != null ? menu.getId() : null);
+    }
+    public void setComplement(Complement complement) {
+        this.complement = complement;
+        this.complementId = (complement != null ? complement.getId() : null);
+    }
 }

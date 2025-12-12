@@ -35,9 +35,7 @@ public class BurgerServiceImpl implements BurgerService {
                             .height(600)
                             .crop("fill")
             );
-
             CloudinaryService.UploadResult res = cloudinary.upload(imageFile, opts);
-
             burger.setImage(res.secureUrl);
             burger.setImagePublicId(res.publicId);
         }
@@ -49,7 +47,9 @@ public class BurgerServiceImpl implements BurgerService {
     @Override
     public Burger updateImage(Long id, File newImage) throws Exception {
         Burger existing = (Burger) productRepo.findById(id);
-        if (existing == null) throw new IllegalArgumentException("Burger introuvable");
+        if (existing == null){
+            throw new IllegalArgumentException("Burger introuvable");
+        } 
 
         if (existing.getImagePublicId() != null) {
             cloudinary.delete(existing.getImagePublicId());
@@ -65,7 +65,9 @@ public class BurgerServiceImpl implements BurgerService {
     @Override
     public void delete(Long id) throws Exception {
         Burger b = (Burger) productRepo.findById(id);
-        if (b == null) return;
+        if (b == null){
+            return;
+        } 
 
         if (b.getImagePublicId() != null) {
             cloudinary.delete(b.getImagePublicId());

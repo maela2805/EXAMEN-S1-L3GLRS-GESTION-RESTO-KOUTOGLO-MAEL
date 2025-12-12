@@ -10,5 +10,5 @@ import lombok.*;
 public class Quartier {
     private Integer id;
     private String libelle;
-    private Zone zone; // may contain only id when loaded minimally
+    private Zone zone;
 }

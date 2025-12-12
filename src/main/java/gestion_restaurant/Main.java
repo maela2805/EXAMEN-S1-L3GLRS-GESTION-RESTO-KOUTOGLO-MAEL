@@ -5,25 +5,34 @@ import gestion_restaurant.db.DataSourceProvider;
 import gestion_restaurant.repository.BoissonRepository;
 import gestion_restaurant.repository.ComplementRepository;
 import gestion_restaurant.repository.FriteRepository;
+import gestion_restaurant.repository.MenuBurgerRepository;
+import gestion_restaurant.repository.MenuComplementRepository;
+import gestion_restaurant.repository.MenuRepository;
 import gestion_restaurant.repository.ProductRepository;
 import gestion_restaurant.repository.QuartierRepository;
 import gestion_restaurant.repository.ZoneRepository;
 import gestion_restaurant.repository.impl.BoissonRepositoryImpl;
 import gestion_restaurant.repository.impl.ComplementRepositoryImpl;
 import gestion_restaurant.repository.impl.FriteRepositoryImpl;
+import gestion_restaurant.repository.impl.MenuBurgerRepositoryImpl;
+import gestion_restaurant.repository.impl.MenuComplementRepositoryImpl;
+import gestion_restaurant.repository.impl.MenuRepositoryImpl;
 import gestion_restaurant.repository.impl.ProductRepositoryImpl;
 import gestion_restaurant.repository.impl.QuartierRepositoryImpl;
 import gestion_restaurant.repository.impl.ZoneRepositoryImpl;
 import gestion_restaurant.service.BurgerService;
 import gestion_restaurant.service.ComplementService;
+import gestion_restaurant.service.MenuService;
 import gestion_restaurant.service.QuartierService;
 import gestion_restaurant.service.ZoneService;
 import gestion_restaurant.service.impl.BurgerServiceImpl;
 import gestion_restaurant.service.impl.ComplementServiceImpl;
+import gestion_restaurant.service.impl.MenuServiceImpl;
 import gestion_restaurant.service.impl.QuartierServiceImpl;
 import gestion_restaurant.service.impl.ZoneServiceImpl;
 import gestion_restaurant.view.ComplementView;
-import gestion_restaurant.view.MyMenu; 
+import gestion_restaurant.view.MenuView;
+import gestion_restaurant.view.MyMenu;
 import gestion_restaurant.view.BurgerView;
 import java.util.Scanner;
 
@@ -43,6 +52,11 @@ public class Main {
         BurgerService burgerService = new BurgerServiceImpl(productRepository,cloudinary);
         BurgerView burgerView = new BurgerView(burgerService);
         ComplementView complementView = new ComplementView(complementService);
+        MenuBurgerRepository menuBurgerRepo= new MenuBurgerRepositoryImpl();
+        MenuComplementRepository menuComplementRepo = new MenuComplementRepositoryImpl();
+        MenuRepository menuRepo = new MenuRepositoryImpl(productRepository, menuBurgerRepo,menuComplementRepo);
+        MenuService menuService = new MenuServiceImpl(menuRepo, productRepository, menuBurgerRepo, menuComplementRepo, cloudinary);
+        MenuView menuView = new MenuView(menuService);
 
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
@@ -53,6 +67,7 @@ public class Main {
                 System.out.println("1) Gérer Zone & Quartier");
                 System.out.println("2) Gérer Burgers");
                 System.out.println("3) Gérer Compléments");
+                System.out.println("4) Gérer Menu");
                 System.out.println("0) Quitter");
                 System.out.print("Choix: ");
                 String c = sc.nextLine().trim();
@@ -76,6 +91,9 @@ public class Main {
                         break;
                     case "3":
                         complementView.start();
+                        break;
+                    case "4":
+                        menuView.start();
                         break;
                     case "0":
                         exit = true; break;

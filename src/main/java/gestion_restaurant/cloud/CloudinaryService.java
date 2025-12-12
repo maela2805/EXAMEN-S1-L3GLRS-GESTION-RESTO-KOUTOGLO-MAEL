@@ -103,4 +103,12 @@ public class CloudinaryService {
             this.raw = raw;
         }
     }
+
+    public boolean isCloudinaryConfigured() {
+        try {
+            return this.cloudinary != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

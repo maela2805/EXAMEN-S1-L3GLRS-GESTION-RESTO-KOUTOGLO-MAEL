@@ -1,7 +1,6 @@
 package gestion_restaurant.repository;
 
 import gestion_restaurant.entity.Complement;
-import gestion_restaurant.entity.ComplementType;
 
 import java.util.List;
 

@@ -11,7 +11,6 @@ public class DataSourceProvider {
 
     static {
         HikariConfig config = new HikariConfig();
-
         config.setJdbcUrl("jdbc:postgresql://ep-solitary-shadow-ad05zza6.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require");
 
         config.setUsername("neondb_owner");

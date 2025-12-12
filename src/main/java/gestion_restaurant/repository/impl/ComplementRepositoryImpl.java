@@ -6,7 +6,6 @@ import gestion_restaurant.entity.ComplementType;
 import gestion_restaurant.entity.Frite;
 import gestion_restaurant.entity.Boisson;
 import gestion_restaurant.repository.ComplementRepository;
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,10 +16,10 @@ public class ComplementRepositoryImpl implements ComplementRepository {
     private final DataSource ds = DataSourceProvider.getDataSource();
     @Override
     public Complement save(Complement c) throws Exception {
-       String sql = "INSERT INTO complement (nom, prix, image, typecomplement, image_public_id, description, created_at) " +
-             "VALUES (?, ?, ?, ?::complement_type, ?, ?, ?) RETURNING id";
+        String sql = "INSERT INTO complement (nom, prix, image, typecomplement, image_public_id, description, created_at) " +
+            "VALUES (?, ?, ?, ?::complement_type, ?, ?, ?) RETURNING id";
         try (Connection con = ds.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+            PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, c.getNom());
             ps.setBigDecimal(2, c.getPrix());
             ps.setString(3, c.getImage());
@@ -30,10 +29,10 @@ public class ComplementRepositoryImpl implements ComplementRepository {
             ps.setTimestamp(7, Timestamp.from(c.getCreatedAt()));
             if (c.getCreatedAt() != null){
                 ps.setTimestamp(7, Timestamp.from(c.getCreatedAt()));
-            } 
+            }
             else{
                 ps.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
-            } 
+            }
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {

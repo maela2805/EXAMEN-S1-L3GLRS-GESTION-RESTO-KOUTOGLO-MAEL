@@ -8,8 +8,18 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class MenuBurger {
-    private MenuBurgerId id;
+    private Long id;
+    private Long menuId;
+    private Long burgerId;
+    private Integer quantite = 1;
     private Menu menu;
     private Burger burger;
-    private Integer quantite = 1;
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+        this.menuId = (menu != null ? menu.getId() : null);
+    }
+    public void setBurger(Burger burger) {
+        this.burger = burger;
+        this.burgerId = (burger != null ? burger.getId() : null);
+    }
 }
