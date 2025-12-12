@@ -119,14 +119,11 @@ public class ProductRepositoryImpl implements ProductRepository {
         try (Connection c = ds.getConnection()) {
             c.setAutoCommit(false);
             try {
-                // delete burger row first (FK with cascade would also do it)
                 String delBurger = "DELETE FROM burger WHERE id = ?";
                 try (PreparedStatement psb = c.prepareStatement(delBurger)) {
                     psb.setLong(1, id);
                     psb.executeUpdate();
                 }
-
-                // delete product
                 String delProd = "DELETE FROM product WHERE id = ?";
                 try (PreparedStatement psp = c.prepareStatement(delProd)) {
                     psp.setLong(1, id);
@@ -210,6 +207,4 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
         return list;
     }
-
-    // implement other ProductRepository methods (update/find/delete) as needed...
 }

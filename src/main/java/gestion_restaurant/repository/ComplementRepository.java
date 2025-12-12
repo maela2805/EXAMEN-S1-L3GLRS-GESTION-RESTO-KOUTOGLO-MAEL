@@ -10,6 +10,5 @@ public interface ComplementRepository {
     Complement update(Complement c) throws Exception;
     Complement findById(Long id) throws Exception;
     List<Complement> findAll() throws Exception;
-    List<Complement> findByType(ComplementType t) throws Exception;
     boolean delete(Long id) throws Exception;
 }

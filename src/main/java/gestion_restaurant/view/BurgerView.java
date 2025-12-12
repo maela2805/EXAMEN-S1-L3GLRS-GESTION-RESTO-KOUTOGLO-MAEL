@@ -52,12 +52,20 @@ public class BurgerView {
         try {
             System.out.print("Nom du burger: ");
             String nom = scanner.nextLine().trim();
-            if (nom.isEmpty()) { System.out.println("Nom requis."); return; }
+            if (nom.isEmpty()) { 
+                System.out.println("Nom requis."); 
+                return; 
+            }
 
             System.out.print("Prix (ex: 3500.00): ");
             String prixStr = scanner.nextLine().trim();
             java.math.BigDecimal prix;
-            try { prix = new java.math.BigDecimal(prixStr); } catch (NumberFormatException e) { System.out.println("Prix invalide."); return; }
+            try { 
+                prix = new java.math.BigDecimal(prixStr); 
+            } catch (NumberFormatException e) { 
+                System.out.println("Prix invalide."); 
+                return; 
+            }
 
             System.out.print("Description (laisser vide si non): ");
             String desc = scanner.nextLine().trim();
@@ -67,10 +75,19 @@ public class BurgerView {
             File imgFile = null;
             if (!path.isEmpty()) {
                 imgFile = new File(path);
-                if (!imgFile.exists() || !imgFile.isFile()) { System.out.println("Fichier introuvable : " + path); return; }
-                if (!isAllowedImageExtension(imgFile)) { System.out.println("Format non supporté. Utilise jpg/jpeg/png/webp."); return; }
+                if (!imgFile.exists() || !imgFile.isFile()) { 
+                    System.out.println("Fichier introuvable : " + path); 
+                    return; 
+                }
+                if (!isAllowedImageExtension(imgFile)) { 
+                    System.out.println("Format non supporté. Utilise jpg/jpeg/png/webp.");
+                    return;
+                }
                 long maxBytes = 10L * 1024 * 1024;
-                if (imgFile.length() > maxBytes) { System.out.println("Fichier trop volumineux (>10MB)."); return; }
+                if (imgFile.length() > maxBytes) { 
+                    System.out.println("Fichier trop volumineux (>10MB)."); 
+                    return;
+                }
             }
 
             Burger b = new Burger();
@@ -81,7 +98,9 @@ public class BurgerView {
 
             Burger saved = burgerService.create(b, imgFile);
             System.out.println("Burger créé id=" + saved.getId());
-            if (saved.getImage() != null) System.out.println("Image URL: " + saved.getImage());
+            if (saved.getImage() != null){
+                System.out.println("Image URL: " + saved.getImage());
+            }
         } catch (Exception ex) {
             System.err.println("Erreur création burger: " + ex.getMessage());
             ex.printStackTrace(System.err);
@@ -92,7 +111,10 @@ public class BurgerView {
         try {
             List<Burger> list = burgerService.findAll();
             System.out.println("Burgers:");
-            if (list.isEmpty()) { System.out.println(" (aucun)"); return; }
+            if (list.isEmpty()) { 
+                System.out.println(" (aucun)");
+                return;
+            }
             list.forEach(b -> System.out.println(" - id=" + b.getId() + " nom=" + b.getNom() +
                     " prix=" + b.getPrix() + (b.getImage() != null ? " image=" + b.getImage() : "")));
         } catch (Exception ex) {
@@ -106,18 +128,33 @@ public class BurgerView {
             System.out.print("Id du burger à modifier: ");
             String idStr = scanner.nextLine().trim();
             Long id;
-            try { id = Long.valueOf(idStr); } catch (NumberFormatException ex) { System.out.println("Id invalide."); return; }
-
+            try { 
+                id = Long.valueOf(idStr); 
+            } catch (NumberFormatException ex) { 
+                System.out.println("Id invalide."); 
+                return; 
+            }
             System.out.print("Chemin nouvelle image: ");
             String path = scanner.nextLine().trim();
-            if (path.isEmpty()) { System.out.println("Chemin vide."); return; }
+            if (path.isEmpty()) { 
+                System.out.println("Chemin vide."); 
+                return; 
+            }
             File img = new File(path);
-            if (!img.exists() || !img.isFile()) { System.out.println("Fichier introuvable."); return; }
-            if (!isAllowedImageExtension(img)) { System.out.println("Format non supporté."); return; }
+            if (!img.exists() || !img.isFile()) { 
+                System.out.println("Fichier introuvable."); 
+                return; 
+            }
+            if (!isAllowedImageExtension(img)) { 
+                System.out.println("Format non supporté."); 
+                return; 
+            }
 
             Burger updated = burgerService.updateImage(id, img);
             System.out.println("Image mise à jour pour burger id=" + updated.getId());
-            if (updated.getImage() != null) System.out.println("Nouvelle image URL: " + updated.getImage());
+            if (updated.getImage() != null){
+                System.out.println("Nouvelle image URL: " + updated.getImage());
+            }
         } catch (Exception ex) {
             System.err.println("Erreur update image: " + ex.getMessage());
             ex.printStackTrace(System.err);
@@ -129,7 +166,12 @@ public class BurgerView {
             System.out.print("Id du burger à supprimer: ");
             String idStr = scanner.nextLine().trim();
             Long id;
-            try { id = Long.valueOf(idStr); } catch (NumberFormatException ex) { System.out.println("Id invalide."); return; }
+            try { 
+                id = Long.valueOf(idStr); 
+            } catch (NumberFormatException ex) { 
+                System.out.println("Id invalide."); 
+                return; 
+            }
 
             burgerService.delete(id);
             System.out.println("Burger supprimé.");

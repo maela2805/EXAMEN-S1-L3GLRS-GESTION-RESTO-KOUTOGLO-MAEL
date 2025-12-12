@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Getter @Setter @NoArgsConstructor 
- @ToString
+@ToString
 public class Complement {
     private Long id;
     private String nom;
@@ -17,8 +17,8 @@ public class Complement {
     private String description;
 
     public Complement(Long id, String nom, BigDecimal prix, String image,
-                      ComplementType typeComplement, Instant createdAt,
-                      String imagePublicId, String description) {
+                    ComplementType typeComplement, Instant createdAt,
+                    String imagePublicId, String description) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;

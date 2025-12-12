@@ -4,10 +4,12 @@ D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Paiement.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\RoleType.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Burger.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\impl\ComplementRepositoryImpl.java
+D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\FriteRepository.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Zone.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\StatutLivraison.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\User.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\QuartierRepository.java
+D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\impl\BoissonRepositoryImpl.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\service\ComplementService.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\ComplementType.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Commande.java
@@ -15,6 +17,7 @@ D:\gestion_restaurant\src\main\java\gestion_restaurant\service\impl\QuartierServ
 D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\impl\ZoneRepositoryImpl.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Boisson.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Complement.java
+D:\gestion_restaurant\src\main\java\gestion_restaurant\view\MyMenu.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\CommandeComplement.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\Main.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\service\impl\ZoneServiceImpl.java
@@ -22,8 +25,8 @@ D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Quartier.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Livraison.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\ZoneRepository.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\MenuBurger.java
+D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\impl\FriteRepositoryImpl.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Frite.java
-D:\gestion_restaurant\src\main\java\gestion_restaurant\view\ConsoleMenu.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\db\DataSourceProvider.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Product.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\service\QuartierService.java
@@ -44,6 +47,7 @@ D:\gestion_restaurant\src\main\java\gestion_restaurant\cloud\CloudinaryService.j
 D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\ProductRepository.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\MenuComplement.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\ComplementRepository.java
+D:\gestion_restaurant\src\main\java\gestion_restaurant\repository\BoissonRepository.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\entity\Menu.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\service\impl\BurgerServiceImpl.java
 D:\gestion_restaurant\src\main\java\gestion_restaurant\service\impl\ComplementServiceImpl.java
