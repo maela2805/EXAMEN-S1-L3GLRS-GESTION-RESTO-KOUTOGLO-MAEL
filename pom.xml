@@ -16,7 +16,7 @@
     </properties>
 
     <dependencies>
-        <!-- JDBC / Hikari / Postgres -->
+        
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
@@ -28,14 +28,12 @@
             <version>42.6.0</version>
         </dependency>
 
-        <!-- Cloudinary -->
         <dependency>
             <groupId>com.cloudinary</groupId>
             <artifactId>cloudinary-http44</artifactId>
             <version>1.31.0</version>
         </dependency>
 
-        <!-- Logging (slf4j API + simple backend) -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -47,7 +45,6 @@
             <version>2.0.9</version>
         </dependency>
 
-        <!-- lombok (compile-time) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -58,7 +55,6 @@
 
     <build>
         <plugins>
-            <!-- compile -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -68,7 +64,6 @@
                 </configuration>
             </plugin>
 
-            <!-- copy dependencies so we can run with java -cp target\classes;target\dependency\* -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -85,7 +80,6 @@
                 </executions>
             </plugin>
 
-            <!-- optional: exec plugin to run main easily -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
