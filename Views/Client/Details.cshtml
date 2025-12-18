@@ -1,0 +1,49 @@
+@model gestion_restaurant.ViewModels.ProductDetailsViewModel
+
+<link rel="stylesheet" href="~/css/detail.css" />
+
+<div class="container my-5">
+
+    <a asp-action="Index" class="back-link">← Retour</a>
+
+    <div class="detail-wrapper">
+
+        <div class="detail-image">
+            <img src="@Model.Product.Image" alt="@Model.Product.Nom" />
+        </div>
+
+        <div class="detail-content">
+
+            <h2>@Model.Product.Nom</h2>
+            <p>@Model.Product.Description</p>
+
+            <form asp-action="AddToCart" method="post">
+                <input type="hidden" name="productId" value="@Model.Product.Id" />
+
+                <h4>Choisir une frite</h4>
+                @foreach (var f in Model.Frites)
+                {
+                    <label class="option-box">
+                        <input type="radio" name="friteId" value="@f.Id" />
+                        @f.Nom <strong>@f.Prix FCFA</strong>
+                    </label>
+                }
+
+                <h4>Choisir une boisson</h4>
+                @foreach (var b in Model.Boissons)
+                {
+                    <label class="option-box">
+                        <input type="radio" name="boissonId" value="@b.Id" />
+                        @b.Nom <strong>@b.Prix FCFA</strong>
+                    </label>
+                }
+
+                <button type="submit" class="btn-add-cart">
+                    Ajouter au panier
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+</div>

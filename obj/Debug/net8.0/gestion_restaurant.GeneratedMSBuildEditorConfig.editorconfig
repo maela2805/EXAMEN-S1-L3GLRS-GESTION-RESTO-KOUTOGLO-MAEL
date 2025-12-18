@@ -24,8 +24,16 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEFjY3VlaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/COURSCSHARP/gestion_restaurant/gestion_restaurant/Views/Client/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/COURSCSHARP/gestion_restaurant/gestion_restaurant/Views/Client/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/COURSCSHARP/gestion_restaurant/gestion_restaurant/Views/Client/Panier.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XFBhbmllci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/COURSCSHARP/gestion_restaurant/gestion_restaurant/Views/Home/Index.cshtml]

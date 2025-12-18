@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using gestion_restaurant.Data;
 using gestion_restaurant.ViewModels;
+using gestion_restaurant.Helpers;
+using gestion_restaurant.Models;
 
 namespace gestion_restaurant.Controllers
 {
@@ -56,33 +58,105 @@ namespace gestion_restaurant.Controllers
         }
 
         public async Task<IActionResult> Details(long id)
-{
-    var product = await _context.Products
-        .FirstOrDefaultAsync(p => p.Id == id);
+        {
+            var product = await _context.Products
+                .FirstOrDefaultAsync(p => p.Id == id);
 
-    if (product == null)
-        return NotFound();
+            if (product == null)
+                return NotFound();
 
-    var model = new ProductDetailsViewModel
-    {
-        Product = product
-    };
+            var model = new ProductDetailsViewModel
+            {
+                Product = product
+            };
 
-    if (product.TypeProduit == "BURGER")
-    {
-        model.Frites = await _context.Complements
-            .Where(c => c.TypeComplement == "FRITE")
-            .ToListAsync();
+            if (product.TypeProduit == "BURGER")
+            {
+                model.Frites = await _context.Complements
+                    .Where(c => c.TypeComplement == "FRITE")
+                    .ToListAsync();
 
-        model.Boissons = await _context.Complements
-            .Where(c => c.TypeComplement == "BOISSON")
-            .ToListAsync();
+                model.Boissons = await _context.Complements
+                    .Where(c => c.TypeComplement == "BOISSON")
+                    .ToListAsync();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddToCart(
+            long productId,
+            long? friteId,
+            long? boissonId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null)
+                return NotFound();
+
+            decimal total = product.Prix;
+
+            string? friteNom = null;
+            decimal? fritePrix = null;
+
+            string? boissonNom = null;
+            decimal? boissonPrix = null;
+
+            if (friteId.HasValue)
+            {
+                var frite = await _context.Complements.FindAsync(friteId);
+                if (frite != null)
+                {
+                    friteNom = frite.Nom;
+                    fritePrix = frite.Prix;
+                    total += frite.Prix;
+                }
+            }
+
+            if (boissonId.HasValue)
+            {
+                var boisson = await _context.Complements.FindAsync(boissonId);
+                if (boisson != null)
+                {
+                    boissonNom = boisson.Nom;
+                    boissonPrix = boisson.Prix;
+                    total += boisson.Prix;
+                }
+            }
+
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("CART")
+                    ?? new List<CartItem>();
+
+            cart.Add(new CartItem
+            {
+                ProductId = product.Id,
+                Nom = product.Nom,
+                Image = product.Image,
+                PrixUnitaire = total,
+                Frite = friteNom,
+                PrixFrite = fritePrix,
+                Boisson = boissonNom,
+                PrixBoisson = boissonPrix
+            });
+
+            HttpContext.Session.SetObjectAsJson("CART", cart);
+
+            return RedirectToAction("Panier");
+        }
+
+        public IActionResult Panier()
+        {
+            var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>("CART")
+                    ?? new List<CartItem>();
+
+            return View(cart);
+        }
+
     }
 
-    return View(model);
-}
 
 
 
-    }
+
+    
 }

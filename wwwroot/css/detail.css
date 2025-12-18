@@ -1,0 +1,121 @@
+.detail-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.detail-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.badge-product {
+    background: var(--orange);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.options {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.option-card {
+    border: 2px solid #eee;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.total-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 30px 0;
+}
+
+.btn-add-cart {
+    width: 100%;
+    padding: 14px;
+    background: var(--orange);
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+.detail-footer {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.total-label {
+    font-size: 16px;
+    color: #555;
+}
+
+.total-price {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.add-to-cart-btn {
+    margin-left: auto;
+    background-color: #ff7a00;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #e66f00;
+}
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.btn-add-cart {
+    margin-top: 25px;
+    padding: 14px;
+    background-color: #ff7a00;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-add-cart:hover {
+    background-color: #e96f00;
+}

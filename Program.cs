@@ -24,14 +24,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(dataSource)
 );
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
-
-
 var app = builder.Build();
-
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
+
 
 app.MapControllerRoute(
     name: "default",

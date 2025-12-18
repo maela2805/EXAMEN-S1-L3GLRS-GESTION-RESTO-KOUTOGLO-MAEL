@@ -1,0 +1,66 @@
+@model List<gestion_restaurant.Models.CartItem>
+
+<link rel="stylesheet" href="~/css/panier.css" />
+
+<h2 class="cart-title">VOTRE PANIER</h2>
+
+<div class="cart-container">
+
+    <div class="cart-left">
+        @foreach (var item in Model)
+        {
+            <div class="cart-item">
+
+                <div class="cart-image">
+                    <img src="@item.Image" alt="@item.Nom" />
+                </div>
+
+                <div class="cart-info">
+                    <strong class="cart-name">@item.Nom</strong>
+                    <p class="cart-price">@item.PrixUnitaire FCFA</p>
+
+                    @if (item.Frite != null)
+                    {
+                        <small>Frite : @item.Frite (+@item.PrixFrite FCFA)</small><br />
+                    }
+                    @if (item.Boisson != null)
+                    {
+                        <small>Boisson : @item.Boisson (+@item.PrixBoisson FCFA)</small>
+                    }
+                </div>
+
+                <div class="cart-actions">
+                    <button class="qty-btn">-</button>
+                    <span>@item.Quantite</span>
+                    <button class="qty-btn">+</button>
+                </div>
+
+                <div class="cart-delete">
+                    🗑️
+                </div>
+
+            </div>
+        }
+    </div>
+
+    <div class="cart-summary">
+        <h3>RESUME</h3>
+
+        <div class="summary-line">
+            <span>Sous-total</span>
+            <span>@Model.Sum(i => i.Total) FCFA</span>
+        </div>
+
+        <div class="summary-total">
+            <span>TOTAL</span>
+            <span>@Model.Sum(i => i.Total) FCFA</span>
+        </div>
+
+        <button class="btn-order">Commander</button>
+
+        <p class="payment-info">
+            Paiement sécurisé par Wave ou OM
+        </p>
+    </div>
+
+</div>
