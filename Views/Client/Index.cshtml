@@ -68,7 +68,14 @@
                             <p class="text-muted small">@p.Description</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="price">@p.Prix FCFA</span>
-                                <button class="btn-add">+</button>
+                                <button class="btn-add">
+                                    <a asp-controller="Client"
+                                    asp-action="Details"
+                                    asp-route-id="@p.Id"
+                                    class="btn-add">
+                                    +
+                                    </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -91,7 +98,14 @@
                             <p class="text-muted small">@p.Description</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="price">@p.Prix FCFA</span>
-                                <button class="btn-add">+</button>
+                                <button class="btn-add">
+                                    <a asp-controller="Client"
+                                    asp-action="Details"
+                                    asp-route-id="@p.Id"
+                                    class="btn-add">
+                                    +
+                                    </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -113,7 +127,6 @@
                             <h6>@c.Nom</h6>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="price">@c.Prix FCFA</span>
-                                <button class="btn-add">+</button>
                             </div>
                         </div>
                     </div>

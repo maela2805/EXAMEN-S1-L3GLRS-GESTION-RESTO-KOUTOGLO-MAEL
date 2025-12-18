@@ -22,19 +22,14 @@
     </button>
 
     <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto align-items-center">
+        <ul class="navbar-nav ms-auto align-items-center gap-3">
+
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Accueil" ? "active" : "")"
-                   asp-controller="Client" asp-action="Accueil">
-                    Accueil
-                </a>
+                <a class="nav-link" asp-controller="Client" asp-action="Accueil">Accueil</a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")"
-                   asp-controller="Client" asp-action="Index">
-                    Catalogue
-                </a>
+                <a class="nav-link" asp-controller="Client" asp-action="Index">Catalogue</a>
             </li>
 
             <li class="nav-item">
@@ -42,13 +37,23 @@
                     Mes commandes
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link position-relative panier-link"
+                asp-controller="Commande"
+                asp-action="Panier">
 
-            <li class="nav-item ms-3">
-                <span class="client-badge">
-                👤 Client 1
-            </span>
+                    <i class="bi bi-cart3 fs-5"></i>
+                    <span class="panier-badge">0</span>
+                </a>
             </li>
+            <li class="nav-item">
+                <span class="badge client-badge">
+                    👤 Client 1
+                </span>
+            </li>
+
         </ul>
+
     </div>
 </header>
 

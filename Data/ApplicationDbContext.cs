@@ -62,9 +62,12 @@ namespace gestion_restaurant.Data
             modelBuilder.Entity<MenuBurger>().ToTable("menu_burger");
             modelBuilder.Entity<MenuComplement>().ToTable("menu_complement");
 
+            // modelBuilder.Entity<MenuBurger>()
+            //     .HasIndex(mb => new { mb.MenuId, mb.BurgerId })
+            //     .IsUnique();
+            
             modelBuilder.Entity<MenuBurger>()
-                .HasIndex(mb => new { mb.MenuId, mb.BurgerId })
-                .IsUnique();
+                .HasNoKey(); 
 
             modelBuilder.Entity<MenuComplement>()
                 .HasIndex(mc => new { mc.MenuId, mc.ComplementId })

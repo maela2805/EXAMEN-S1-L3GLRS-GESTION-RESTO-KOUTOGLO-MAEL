@@ -24,6 +24,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(dataSource)
 );
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
+
 var app = builder.Build();
 
 app.UseStaticFiles();
