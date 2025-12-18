@@ -88,6 +88,7 @@ D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\gestion_re
 D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\gestion_restaurant.MvcApplicationPartsAssemblyInfo.cache
 D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\gestion_restaurant.RazorAssemblyInfo.cache
 D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\gestion_restaurant.RazorAssemblyInfo.cs
+D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\gestion_restaurant.sourcelink.json
 D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\rjimswa.dswa.cache.json
 D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 D:\COURSCSHARP\gestion_restaurant\gestion_restaurant\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
