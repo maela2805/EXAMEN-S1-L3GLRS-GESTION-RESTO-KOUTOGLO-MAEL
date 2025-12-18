@@ -31,14 +31,20 @@ namespace gestion_restaurant.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasPostgresEnum<ComplementType>();
-            modelBuilder.HasPostgresEnum<ModePaiement>();
-            modelBuilder.HasPostgresEnum<ProductType>();
-            modelBuilder.HasPostgresEnum<RoleType>();
-            modelBuilder.HasPostgresEnum<StatutCommande>();
-            modelBuilder.HasPostgresEnum<LivraisonStatut>();
+            // modelBuilder.HasPostgresEnum<ComplementType>("complement_type");
+            modelBuilder.HasPostgresEnum<ModePaiement>("mode_paiement");
+            modelBuilder.HasPostgresEnum<ProductType>(
+                schema: "public",
+                name: "product_type"
+            );
+            modelBuilder.HasPostgresEnum<RoleType>("role_type");
+            modelBuilder.HasPostgresEnum<StatutCommande>("statut_commande");
+            modelBuilder.HasPostgresEnum<LivraisonStatut>("livraison_statut");
+
             modelBuilder.Entity<User>().ToTable("users");
-            modelBuilder.Entity<Product>().ToTable("product");
+             modelBuilder.Entity<Product>()
+                .Property(p => p.TypeProduit)
+                .HasColumnType("product_type");
             modelBuilder.Entity<Burger>().ToTable("burger");
             modelBuilder.Entity<Menu>().ToTable("menu");
             modelBuilder.Entity<Complement>().ToTable("complement");
@@ -68,9 +74,6 @@ namespace gestion_restaurant.Data
                 .HasIndex(p => p.CommandeId)
                 .IsUnique();
 
-            // =======================
-            // RELATIONS
-            // =======================
             modelBuilder.Entity<Commande>()
                 .HasOne(c => c.Client)
                 .WithMany()
@@ -83,5 +86,6 @@ namespace gestion_restaurant.Data
                 .HasForeignKey<Paiement>(p => p.CommandeId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }

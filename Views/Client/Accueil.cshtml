@@ -1,0 +1,128 @@
+@{
+    ViewData["Title"] = "Accueil";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">BRASIL BURGER</span>
+
+        <h1>
+            LES MEILLEURS <br />
+            BURGERS <br />
+            DE DAKAR
+        </h1>
+
+        <p>
+            Découvrez nos burgers faits maison avec des ingrédients frais.
+            Livraison rapide dans tout Dakar.
+        </p>
+
+        <div class="hero-buttons">
+            <a asp-controller="Client"
+               asp-action="Index"
+               class="btn btn-orange">
+                Commander maintenant
+            </a>
+
+            <a asp-controller="Client"
+               asp-action="Index"
+               class="btn btn-outline-light">
+                Voir le menu
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- BEST SELLERS -->
+<section class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">NOS BEST-SELLERS</h2>
+        <p class="text-muted">
+            Découvrez les favoris de nos clients. Des burgers savoureux préparés avec passion.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card product-card">
+                <span class="product-badge">Burger</span>
+                <img src="/images/burger1.png" class="card-img-top" alt="Classic Brasil">
+                <div class="card-body">
+                    <h5>Classic Brasil</h5>
+                    <p class="text-muted small">
+                        Notre burger signature avec du bœuf grillé
+                    </p>
+                    <span class="price">2 500 FCFA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card product-card">
+                <span class="product-badge">Burger</span>
+                <img src="/images/burger2.png" class="card-img-top" alt="Double Smash">
+                <div class="card-body">
+                    <h5>Double Smash</h5>
+                    <p class="text-muted small">
+                        Double steak, fromage fondant
+                    </p>
+                    <span class="price">3 500 FCFA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card product-card">
+                <span class="product-badge">Burger</span>
+                <img src="/images/burger3.png" class="card-img-top" alt="Chicken Crispy">
+                <div class="card-body">
+                    <h5>Chicken Crispy</h5>
+                    <p class="text-muted small">
+                        Poulet croustillant et sauce maison
+                    </p>
+                    <span class="price">3 000 FCFA</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MENUS -->
+<section class="container my-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">NOS MENUS</h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card product-card">
+                <span class="product-badge">Menu</span>
+                <img src="/images/menu1.png" class="card-img-top" alt="Menu Classic">
+                <div class="card-body">
+                    <h5>Menu Classic</h5>
+                    <p class="text-muted small">
+                        Burger + frites + boisson
+                    </p>
+                    <span class="price">4 500 FCFA</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card product-card">
+                <span class="product-badge">Menu</span>
+                <img src="/images/menu2.png" class="card-img-top" alt="Menu Double">
+                <div class="card-body">
+                    <h5>Menu Double</h5>
+                    <p class="text-muted small">
+                        Double burger + frites + boisson
+                    </p>
+                    <span class="price">5 500 FCFA</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

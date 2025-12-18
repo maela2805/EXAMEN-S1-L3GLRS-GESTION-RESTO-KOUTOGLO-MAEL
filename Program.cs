@@ -1,34 +1,36 @@
+using Npgsql;
 using Microsoft.EntityFrameworkCore;
 using gestion_restaurant.Data;
+using gestion_restaurant.Models.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-builder.WebHost.UseUrls($"http://*:{port}");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+var dataSourceBuilder = new NpgsqlDataSourceBuilder(connectionString);
+
+dataSourceBuilder.MapEnum<ProductType>("public.product_type");
+dataSourceBuilder.MapEnum<ComplementType>("public.complement_type");
+dataSourceBuilder.MapEnum<ModePaiement>("public.mode_paiement");
+dataSourceBuilder.MapEnum<RoleType>("public.role_type");
+dataSourceBuilder.MapEnum<StatutCommande>("public.statut_commande");
+dataSourceBuilder.MapEnum<LivraisonStatut>("public.livraison_statut");
+
+var dataSource = dataSourceBuilder.Build();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseNpgsql(dataSource)
 );
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Client}/{action=Accueil}/{id?}");
 
 app.Run();

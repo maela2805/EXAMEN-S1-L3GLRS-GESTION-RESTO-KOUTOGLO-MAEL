@@ -1,0 +1,33 @@
+.navbar {
+    background-color: white;
+    padding: 12px 32px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.navbar .badge {
+    background-color: var(--bb-orange);
+    color: white;
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+
+.nav-link {
+    color: #222;
+    font-weight: 500;
+    margin-right: 16px;
+}
+
+.nav-link:hover {
+    color: var(--bb-orange);
+}
+
+.client-badge {
+    background-color: var(--bb-orange);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
