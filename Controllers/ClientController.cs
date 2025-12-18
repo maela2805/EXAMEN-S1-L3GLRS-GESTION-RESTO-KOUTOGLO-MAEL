@@ -14,34 +14,47 @@ namespace gestion_restaurant.Controllers
             _context = context;
         }
 
-        // Page d'accueil
         public IActionResult Accueil()
         {
             return View();
         }
 
-        // Catalogue
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string filter = "all", string search = "")
+    {
+        search = search?.ToUpper() ?? "";
+
+        var productsQuery = _context.Products.AsQueryable();
+
+        if (!string.IsNullOrEmpty(search))
         {
-            var burgers = await _context.Products
+            productsQuery = productsQuery.Where(p =>
+                p.Nom.ToUpper().Contains(search) ||
+                p.Description.ToUpper().Contains(search));
+        }
+
+        var model = new ClientCatalogueViewModel
+        {
+            ActiveFilter = filter
+        };
+
+        if (filter == "all" || filter == "burgers")
+            model.Burgers = await productsQuery
                 .Where(p => p.TypeProduit == "BURGER")
                 .ToListAsync();
 
-            var menus = await _context.Products
+        if (filter == "all" || filter == "menus")
+            model.Menus = await productsQuery
                 .Where(p => p.TypeProduit == "MENU")
                 .ToListAsync();
 
-            var complements = await _context.Complements
+        if (filter == "all" || filter == "complements")
+            model.Complements = await _context.Complements
+                .Where(c => c.Nom.ToUpper().Contains(search))
                 .ToListAsync();
 
-            var model = new ClientCatalogueViewModel
-            {
-                Burgers = burgers,
-                Menus = menus,
-                Complements = complements
-            };
+        return View(model);
+    }
 
-            return View(model);
-        }
+
     }
 }

@@ -1,12 +1,9 @@
 :root {
-    --orange: #ff7a00;
+    --bb-orange: #ff7a00;
     --bg-light: #f6f1ee;
 }
-
 .catalogue-header {
-    background-color: transparent;
     padding: 40px 20px 30px;
-    text-align: center;
 }
 
 .catalogue-title {
@@ -16,12 +13,12 @@
 
 .catalogue-subtitle {
     color: #555;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .catalogue-actions {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; 
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
@@ -48,8 +45,6 @@
     background: transparent;
     width: 100%;
 }
-
-
 .catalogue-filters {
     display: flex;
     gap: 10px;
@@ -59,21 +54,53 @@
     padding: 8px 16px;
     border-radius: 6px;
     font-weight: 600;
+    border: 2px solid var(--bb-orange);
+    background: transparent;
+    color: var(--bb-orange);
     cursor: pointer;
-    border: none;
+    text-decoration: none;
+    transition: 0.2s;
 }
 
 .filter-btn.active {
     background-color: var(--bb-orange);
-    color: white;
-}
-
-.filter-btn.outline {
-    background: transparent;
-    border: 2px solid var(--orange);
-    color: var(--orange);
+    color: #fff;
 }
 
 .filter-btn:hover {
-    opacity: 0.9;
+    background-color: var(--bb-orange);
+    color: #fff;
+}
+.btn-add {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bb-orange);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.btn-add:hover {
+    background-color: #e66f00;
+}
+@media (max-width: 768px) {
+    .catalogue-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .catalogue-filters {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
