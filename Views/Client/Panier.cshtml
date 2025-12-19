@@ -56,7 +56,12 @@
             <span>@Model.Sum(i => i.Total) FCFA</span>
         </div>
 
-        <button class="btn-order">Commander</button>
+        <button class="btn-order"><a asp-controller="Commande"
+            asp-action="Checkout"
+            class="btn-add-cart">
+            Passer commande
+            </a>
+        </button>
 
         <p class="payment-info">
             Paiement sécurisé par Wave ou OM

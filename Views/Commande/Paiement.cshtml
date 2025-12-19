@@ -1,0 +1,32 @@
+@{
+    Layout = "_Layout";
+}
+
+<h2>Paiement</h2>
+
+<p>
+    Mode de paiement :
+    <strong>@ViewBag.ModePaiement</strong>
+</p>
+
+<p>
+    Montant à payer :
+    <strong>@ViewBag.Total FCFA</strong>
+</p>
+
+@if (ViewBag.ModePaiement == "WAVE")
+{
+    <p>Paiement via Wave (simulation)</p>
+}
+else if (ViewBag.ModePaiement == "OM")
+{
+    <p>Paiement via Orange Money (simulation)</p>
+}
+else
+{
+    <p>Mode de paiement inconnu</p>
+}
+
+<form asp-action="ConfirmerPaiement" method="post">
+    <button type="submit">Payer</button>
+</form>

@@ -1,0 +1,37 @@
+@model List<gestion_restaurant.Models.Commande>
+
+<h2>Mes commandes</h2>
+
+@foreach (var commande in Model)
+{
+    <div class="commande-card">
+        <h4>Commande #@commande.Id</h4>
+
+        <p>Date : @commande.DateCommande.ToString("dd/MM/yyyy HH:mm")</p>
+
+        <p>
+            Statut :
+            <strong>@commande.Statut</strong>
+        </p>
+
+        <p>
+            Total :
+            <strong>@commande.MontantTotal FCFA</strong>
+        </p>
+
+        <h5>Produits</h5>
+
+        <ul>
+            @foreach (var item in commande.CommandeItems)
+            {
+                <li>
+                    @item.Product.Nom —
+                    x @item.Quantite —
+                    @item.PrixUnitaire FCFA
+                </li>
+            }
+        </ul>
+
+        <hr />
+    </div>
+}

@@ -16,6 +16,11 @@ namespace gestion_restaurant.Controllers
             _context = context;
         }
 
+        private bool IsLoggedIn()
+        {
+            return HttpContext.Session.GetInt32("USER_ID") != null;
+        }
+
         public IActionResult Accueil()
         {
             return View();

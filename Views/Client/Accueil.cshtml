@@ -1,12 +1,15 @@
+
 @{
     ViewData["Title"] = "Accueil";
+    Layout = "_Layout";
 }
+
 
 <link rel="stylesheet" href="~/css/site.css" />
 
-
 <section class="hero">
     <div class="hero-content">
+
         <span class="hero-badge">BRASIL BURGER</span>
 
         <h1>
@@ -21,35 +24,32 @@
         </p>
 
         <div class="hero-buttons">
-            <a asp-controller="Client"
-               asp-action="Index"
-               class="btn btn-orange">
-                Commander maintenant
-            </a>
-
-            <a asp-controller="Client"
-               asp-action="Index"
-               class="btn btn-outline-light">
-                Voir le menu
-            </a>
+            <a class="btn btn-orange">Commander maintenant</a>
+            <a class="btn btn-outline-light">Voir le menu</a>
         </div>
+
     </div>
 </section>
+
+
 
 <!-- BEST SELLERS -->
 <section class="container my-5">
     <div class="text-center mb-4">
         <h2 class="fw-bold">NOS BEST-SELLERS</h2>
         <p class="text-muted">
-            Découvrez les favoris de nos clients. Des burgers savoureux préparés avec passion.
+            Découvrez les favoris de nos clients.
         </p>
     </div>
 
     <div class="row g-4">
+
         <div class="col-md-4">
             <div class="card product-card">
                 <span class="product-badge">Burger</span>
-                <img src="/images/burger1.png" class="card-img-top" alt="Classic Brasil">
+                <img src="https://res.cloudinary.com/dfa4e7afk/image/upload/v1765478744/gestion_restaurant/burgers/classic.jpg"
+                     class="card-img-top"
+                     alt="Classic Brasil">
                 <div class="card-body">
                     <h5>Classic Brasil</h5>
                     <p class="text-muted small">
@@ -63,7 +63,9 @@
         <div class="col-md-4">
             <div class="card product-card">
                 <span class="product-badge">Burger</span>
-                <img src="/images/burger2.png" class="card-img-top" alt="Double Smash">
+                <img src="https://res.cloudinary.com/dfa4e7afk/image/upload/v1765483309/gestion_restaurant/burgers/triple.webp"
+                     class="card-img-top"
+                     alt="Double Smash">
                 <div class="card-body">
                     <h5>Double Smash</h5>
                     <p class="text-muted small">
@@ -77,7 +79,9 @@
         <div class="col-md-4">
             <div class="card product-card">
                 <span class="product-badge">Burger</span>
-                <img src="/images/burger3.png" class="card-img-top" alt="Chicken Crispy">
+                <img src="https://res.cloudinary.com/dfa4e7afk/image/upload/v1765573787/gestion_restaurant/burgers/chicken.jpg"
+                     class="card-img-top"
+                     alt="Chicken Crispy">
                 <div class="card-body">
                     <h5>Chicken Crispy</h5>
                     <p class="text-muted small">
@@ -87,20 +91,23 @@
                 </div>
             </div>
         </div>
+
     </div>
 </section>
 
-<!-- MENUS -->
 <section class="container my-5">
     <div class="text-center mb-4">
         <h2 class="fw-bold">NOS MENUS</h2>
     </div>
 
     <div class="row g-4">
+
         <div class="col-md-6">
             <div class="card product-card">
                 <span class="product-badge">Menu</span>
-                <img src="/images/menu1.png" class="card-img-top" alt="Menu Classic">
+                <img src="https://res.cloudinary.com/dfa4e7afk/image/upload/v1765552567/gestion_restaurant/menus/menu1.png"
+                     class="card-img-top"
+                     alt="Menu Classic">
                 <div class="card-body">
                     <h5>Menu Classic</h5>
                     <p class="text-muted small">
@@ -114,7 +121,9 @@
         <div class="col-md-6">
             <div class="card product-card">
                 <span class="product-badge">Menu</span>
-                <img src="/images/menu2.png" class="card-img-top" alt="Menu Double">
+                <img src="https://res.cloudinary.com/dfa4e7afk/image/upload/v1765551224/gestion_restaurant/menus/menu2.webp"
+                     class="card-img-top"
+                     alt="Menu Double">
                 <div class="card-body">
                     <h5>Menu Double</h5>
                     <p class="text-muted small">
@@ -124,5 +133,6 @@
                 </div>
             </div>
         </div>
+
     </div>
 </section>

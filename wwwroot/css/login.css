@@ -1,0 +1,103 @@
+/* RESET MINIMAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* FOND ORANGE PLEIN ÉCRAN */
+body {
+    height: 100vh;
+    background-color: #ff7a00; /* orange maquette */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CARTE BLANCHE */
+.login-card {
+    background: #ffffff;
+    width: 420px;
+    padding: 40px 35px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* TITRE */
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* FORMULAIRE */
+.login-card form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* LABELS */
+.login-card label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* INPUTS */
+.login-card input {
+    height: 40px;
+    background: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    padding: 0 12px;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+/* INPUT FOCUS */
+.login-card input:focus {
+    outline: none;
+    background: #d6d6d6;
+}
+
+/* LIEN CRÉER UN COMPTE */
+.create-account {
+    font-size: 13px;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 25px;
+}
+
+.create-account:hover {
+    text-decoration: underline;
+}
+
+/* BOUTON */
+.login-card button {
+    align-self: flex-end;
+    background: #ff7a00;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-card button:hover {
+    background: #e96f00;
+}
+
+/* MESSAGE ERREUR */
+.login-error {
+    background: #ffe5e5;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    text-align: center;
+}

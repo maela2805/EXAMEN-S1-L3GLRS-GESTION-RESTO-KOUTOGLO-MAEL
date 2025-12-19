@@ -1,0 +1,44 @@
+.checkout-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.checkout-block {
+    margin-bottom: 25px;
+}
+
+.checkout-block h4 {
+    margin-bottom: 10px;
+}
+
+.checkout-block label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.checkout-block select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn-confirm {
+    width: 100%;
+    padding: 14px;
+    background-color: #ff7a00;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-confirm:hover {
+    background-color: #e56f00;
+}

@@ -61,11 +61,6 @@ namespace gestion_restaurant.Data
             modelBuilder.Entity<Quartier>().ToTable("quartier");
             modelBuilder.Entity<MenuBurger>().ToTable("menu_burger");
             modelBuilder.Entity<MenuComplement>().ToTable("menu_complement");
-
-            // modelBuilder.Entity<MenuBurger>()
-            //     .HasIndex(mb => new { mb.MenuId, mb.BurgerId })
-            //     .IsUnique();
-            
             modelBuilder.Entity<MenuBurger>()
                 .HasNoKey(); 
 
@@ -88,6 +83,23 @@ namespace gestion_restaurant.Data
                 .WithOne()
                 .HasForeignKey<Paiement>(p => p.CommandeId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<CommandeItem>()
+                .HasOne(ci => ci.Commande)
+                .WithMany(c => c.CommandeItems)
+                .HasForeignKey(ci => ci.CommandeId);
+
+            modelBuilder.Entity<CommandeItem>()
+                .HasOne(ci => ci.Product)
+                .WithMany()
+                .HasForeignKey(ci => ci.ProductId);
+
+            modelBuilder.Entity<Livraison>()
+                .HasOne(l => l.Commande)
+                .WithOne(c => c.Livraison)
+                .HasForeignKey<Livraison>(l => l.CommandeId)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
 
     }

@@ -1,0 +1,65 @@
+@model gestion_restaurant.ViewModels.CheckoutViewModel
+
+<link rel="stylesheet" href="~/css/checkout.css" />
+
+<div class="checkout-container">
+
+    <h2>Finaliser la commande</h2>
+
+    <form asp-controller="Commande" asp-action="Paiement" method="post">
+
+        <div class="checkout-block">
+            <h4>Mode de consommation</h4>
+
+            <label>
+                <input type="radio" name="TYPE_LIVRAISON" value="SUR_PLACE" required />
+                Sur place
+            </label>
+
+            <label>
+                <input type="radio" name="TYPE_LIVRAISON" value="A_EMPORTER" />
+                À emporter
+            </label>
+
+            <label>
+                <input type="radio" name="TYPE_LIVRAISON" value="LIVRAISON" />
+                Livraison
+            </label>
+        </div>
+
+        <div class="checkout-block">
+            <h4>Quartier (si livraison)</h4>
+
+            <select name="QUARTIER_ID">
+                <option value="">-- Choisir un quartier --</option>
+
+                @foreach (var q in Model.Quartiers)
+                {
+                    <option value="@q.Id">
+                        @q.Libelle
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="checkout-block">
+            <h4>Moyen de paiement</h4>
+
+            <label>
+                <input type="radio" name="MODE_PAIEMENT" value="WAVE" required />
+                Wave
+            </label>
+
+            <label>
+                <input type="radio" name="MODE_PAIEMENT" value="ORANGE_MONEY" />
+                Orange Money
+            </label>
+        </div>
+
+        <button type="submit" class="btn-confirm">
+            Continuer vers paiement
+        </button>
+
+    </form>
+
+</div>
