@@ -63,7 +63,7 @@ namespace gestion_restaurant.Controllers
                 ClientId = userId.Value,
                 DateCommande = DateTime.UtcNow,
                 MontantTotal = total,
-                Statut = StatutCommande.ENCOURS,
+                Statut = StatutCommande.EN_COURS,
                 IsPaye = true
             };
 
@@ -166,10 +166,9 @@ namespace gestion_restaurant.Controllers
                 ClientId = userId.Value,
                 DateCommande = DateTime.UtcNow,
                 MontantTotal = total,
-                Statut = StatutCommande.ENCOURS,
+                Statut = StatutCommande.EN_COURS,
                 IsPaye = true
             };
-
             _context.Commandes.Add(commande);
             await _context.SaveChangesAsync();
             foreach (var item in cart)
@@ -190,7 +189,7 @@ namespace gestion_restaurant.Controllers
                 {
                     CommandeId = commande.Id,
                     Statut = LivraisonStatut.AFFECTEE,
-                    DateAffectation = DateTime.Now
+                    DateAffectation = DateTime.UtcNow
                 });
 
                 await _context.SaveChangesAsync();

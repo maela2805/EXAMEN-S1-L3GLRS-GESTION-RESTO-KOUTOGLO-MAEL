@@ -6,6 +6,7 @@ namespace gestion_restaurant.Models
     [Table("commande")]
     public class Commande
     {
+        [Column("id")]
         public long Id { get; set; }
 
         [Column("client_id")]

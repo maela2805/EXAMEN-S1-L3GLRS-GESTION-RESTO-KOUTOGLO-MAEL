@@ -1,9 +1,14 @@
+using NpgsqlTypes;
+
 namespace gestion_restaurant.Models.Enums
 {
     public enum StatutCommande
     {
-        ENCOURS,
+        [PgName("ENCOURS")]
+        EN_COURS,
+        [PgName("TERMINE")]
         TERMINE,
+        [PgName("LIVRE")]
         LIVRE
     }
 }
