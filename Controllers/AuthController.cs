@@ -49,7 +49,7 @@ namespace gestion_restaurant.Controllers
             HttpContext.Session.SetInt32("USER_ID", (int)user.Id);
             HttpContext.Session.SetString("USER_NAME", user.Prenom);
 
-            return RedirectToAction("Accueil", "Client");
+            return RedirectToAction("Panier", "Client");
         }
 
         [HttpPost]
