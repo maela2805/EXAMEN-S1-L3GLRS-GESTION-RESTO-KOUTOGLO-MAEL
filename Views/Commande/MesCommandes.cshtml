@@ -1,37 +1,25 @@
+
 @model List<gestion_restaurant.Models.Commande>
 
-<h2>Mes commandes</h2>
+<link rel="stylesheet" href="~/css/mes-commandes.css" />
 
-@foreach (var commande in Model)
-{
-    <div class="commande-card">
-        <h4>Commande #@commande.Id</h4>
+<div class="container my-5">
+    <h1 class="page-title">MES COMMANDES</h1>
 
-        <p>Date : @commande.DateCommande.ToString("dd/MM/yyyy HH:mm")</p>
+    @foreach (var commande in Model)
+    {
+        <div class="commande-card">
+            <div class="commande-header">
+                <h4>Commande @commande.Id</h4>
 
-        <p>
-            Statut :
-            <strong>@commande.Statut</strong>
-        </p>
+                <span class="badge-statut">
+                    @commande.Statut
+                </span>
+            </div>
 
-        <p>
-            Total :
-            <strong>@commande.MontantTotal FCFA</strong>
-        </p>
-
-        <h5>Produits</h5>
-
-        <ul>
-            @foreach (var item in commande.CommandeItems)
-            {
-                <li>
-                    @item.Product.Nom —
-                    x @item.Quantite —
-                    @item.PrixUnitaire FCFA
-                </li>
-            }
-        </ul>
-
-        <hr />
-    </div>
-}
+            <p class="commande-produits">
+                @string.Join(", ", commande.CommandeItems.Select(i => i.Product.Nom))
+            </p>
+        </div>
+    }
+</div>

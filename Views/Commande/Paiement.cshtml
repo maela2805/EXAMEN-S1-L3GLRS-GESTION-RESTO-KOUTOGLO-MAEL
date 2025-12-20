@@ -1,32 +1,47 @@
+
 @{
     Layout = "_Layout";
 }
 
-<h2>Paiement</h2>
+<link rel="stylesheet" href="~/css/paiement.css" />
 
-<p>
-    Mode de paiement :
-    <strong>@ViewBag.ModePaiement</strong>
-</p>
+<div class="container my-5">
+    <div class="paiement-card">
 
-<p>
-    Montant à payer :
-    <strong>@ViewBag.Total FCFA</strong>
-</p>
+        <h1 class="page-title">PAIEMENT</h1>
 
-@if (ViewBag.ModePaiement == "WAVE")
-{
-    <p>Paiement via Wave (simulation)</p>
-}
-else if (ViewBag.ModePaiement == "OM")
-{
-    <p>Paiement via Orange Money (simulation)</p>
-}
-else
-{
-    <p>Mode de paiement inconnu</p>
-}
+        <div class="paiement-info">
+            <p>
+                Mode de paiement :
+                <strong>@ViewBag.ModePaiement</strong>
+            </p>
 
-<form asp-action="ConfirmerPaiement" method="post">
-    <button type="submit">Payer</button>
-</form>
+            <p>
+                Montant à payer :
+                <strong>@ViewBag.Total FCFA</strong>
+            </p>
+        </div>
+
+        <div class="paiement-message">
+            @if (ViewBag.ModePaiement == "WAVE")
+            {
+                <p>Paiement via Wave (simulation)</p>
+            }
+            else if (ViewBag.ModePaiement == "OM")
+            {
+                <p>Paiement via Orange Money (simulation)</p>
+            }
+            else
+            {
+                <p>Mode de paiement inconnu</p>
+            }
+        </div>
+
+        <form asp-action="ConfirmerPaiement" method="post">
+            <button type="submit" class="btn-payer">
+                Payer
+            </button>
+        </form>
+
+    </div>
+</div>

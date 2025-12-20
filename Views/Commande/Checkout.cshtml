@@ -27,10 +27,10 @@
             </label>
         </div>
 
-        <div class="checkout-block">
+        <div class="checkout-block" id="quartier-block">
             <h4>Quartier (si livraison)</h4>
 
-            <select name="QUARTIER_ID">
+            <select name="QUARTIER_ID" id="quartier-select">
                 <option value="">-- Choisir un quartier --</option>
 
                 @foreach (var q in Model.Quartiers)
@@ -63,3 +63,29 @@
     </form>
 
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const radios = document.querySelectorAll('input[name="TYPE_LIVRAISON"]');
+        const quartierBlock = document.getElementById("quartier-block");
+        const quartierSelect = document.getElementById("quartier-select");
+
+        function toggleQuartier() {
+            const selected = document.querySelector('input[name="TYPE_LIVRAISON"]:checked');
+
+            if (selected && selected.value === "LIVRAISON") {
+                quartierBlock.style.display = "block";
+                quartierSelect.required = true;
+            } else {
+                quartierBlock.style.display = "none";
+                quartierSelect.required = false;
+                quartierSelect.value = "";
+            }
+        }
+
+        radios.forEach(radio => {
+            radio.addEventListener("change", toggleQuartier);
+        });
+        toggleQuartier();
+    });
+</script>

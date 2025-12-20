@@ -1,0 +1,37 @@
+@model gestion_restaurant.ViewModels.RegisterViewModel
+@{
+    Layout = "_LoginLayout";
+}
+
+<div class="login-card">
+    <h2>CRÉER UN COMPTE</h2>
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="login-error">@ViewBag.Error</div>
+    }
+
+    <form method="post">
+
+        <label>Nom</label>
+        <input asp-for="Nom" required />
+
+        <label>Prénom</label>
+        <input asp-for="Prenom" required />
+
+        <label>Téléphone</label>
+        <input asp-for="Telephone" required />
+
+        <label>Login</label>
+        <input asp-for="Login" required />
+
+        <label>Mot de passe</label>
+        <input asp-for="Password" type="password" required />
+
+        <button type="submit">Créer le compte</button>
+
+        <a asp-action="Login" class="create-account">
+            Déjà un compte ? Se connecter
+        </a>
+    </form>
+</div>
