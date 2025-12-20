@@ -48,8 +48,12 @@ namespace gestion_restaurant.Controllers
 
             HttpContext.Session.SetInt32("USER_ID", (int)user.Id);
             HttpContext.Session.SetString("USER_NAME", user.Prenom);
-
-            return RedirectToAction("Panier", "Client");
+            if (HttpContext.Session.GetString("commande") != null)
+            {
+                HttpContext.Session.Remove("commande");
+                return RedirectToAction("Paiement", "Commande");
+            }
+            return RedirectToAction("Index", "Client");
         }
 
         [HttpPost]
@@ -72,8 +76,8 @@ namespace gestion_restaurant.Controllers
                 Prenom = model.Prenom,
                 Telephone = model.Telephone,
                 Login = model.Login,
-                Password = model.Password, 
-                Role = RoleType.CLIENT,          
+                Password = model.Password,
+                Role = RoleType.CLIENT,
                 TypeUser = "CLIENT",
                 CreatedAt = DateTime.UtcNow
             };
@@ -89,7 +93,7 @@ namespace gestion_restaurant.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Client");
         }
     }
 }

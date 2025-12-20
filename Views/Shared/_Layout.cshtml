@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,57 +11,55 @@
     <link rel="stylesheet" href="~/gestion_restaurant.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/navbar.css" />
 </head>
+
 <body>
     <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4">
-    <a class="navbar-brand d-flex align-items-center" asp-controller="Client" asp-action="Accueil">
-        <span class="badge me-2">BB</span>
-        <strong>BRASIL BURGER</strong>
-    </a>
+        <a class="navbar-brand d-flex align-items-center" asp-controller="Client" asp-action="Accueil">
+            <span class="badge me-2">BB</span>
+            <strong>BRASIL BURGER</strong>
+        </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto align-items-center gap-3">
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto align-items-center gap-3">
 
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Client" asp-action="Accueil">Accueil</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Client" asp-action="Accueil">Accueil</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Client" asp-action="Index">Catalogue</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Client" asp-action="Index">Catalogue</a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Commande" asp-action="MesCommandes">
-                    Mes commandes
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link position-relative panier-link"
-                asp-controller="Client"
-                asp-action="Panier">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Commande" asp-action="MesCommandes">
+                        Mes commandes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative panier-link" asp-controller="Client" asp-action="Panier">
 
-                    <i class="bi bi-cart3 fs-5"></i>
-                    <span class="panier-badge">0</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <span class="badge client-badge">
-                    👤 Client 1
-                </span>
-            </li>
+                        <i class="bi bi-cart3 fs-5"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Auth" asp-action="Logout" class="badge client-badge" style="text-decoration: none;">
+                        👤
+                    </a>
+                </li>
 
-        </ul>
+            </ul>
 
-    </div>
-</header>
+        </div>
+    </header>
 
     @* <div class="container"> *@
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
     @* </div> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -68,4 +67,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

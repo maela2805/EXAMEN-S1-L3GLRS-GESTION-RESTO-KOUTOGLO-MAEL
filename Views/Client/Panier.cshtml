@@ -21,7 +21,9 @@
 
                     @if (item.Frite != null)
                     {
-                        <small>Frite : @item.Frite (+@item.PrixFrite FCFA)</small><br />
+                        <small>Frite : @item.Frite (+@item.PrixFrite FCFA)</small>
+                
+                        <br />
                     }
                     @if (item.Boisson != null)
                     {
@@ -56,10 +58,9 @@
             <span>@Model.Sum(i => i.Total) FCFA</span>
         </div>
 
-        <button class="btn-order"><a asp-controller="Commande"
-            asp-action="Checkout"
-            class="btn-add-cart " style="text-decoration: none; text-color">
-            Passer commande
+        <button class="btn-order"><a asp-controller="Commande" asp-action="Checkout" class="btn-add-cart "
+                style="text-decoration: none; text-color">
+                Passer commande
             </a>
         </button>
 

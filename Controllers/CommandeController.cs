@@ -153,7 +153,10 @@ namespace gestion_restaurant.Controllers
 
             var userId = HttpContext.Session.GetInt32("USER_ID");
             if (userId == null)
+            {
+                HttpContext.Session.SetObjectAsJson("commande",true);
                 return RedirectToAction("Login", "Auth");
+            }
 
             var typeLivraison = HttpContext.Session.GetString("TYPE_LIVRAISON");
             var modePaiement = Enum.Parse<ModePaiement>(HttpContext.Session.GetString("MODE_PAIEMENT"));
