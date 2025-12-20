@@ -2,6 +2,7 @@ using Npgsql;
 using Microsoft.EntityFrameworkCore;
 using gestion_restaurant.Data;
 using gestion_restaurant.Models.Enums;
+using gestion_restaurant.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,11 @@ builder.Services.AddSession(options =>
 var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+var ctx = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();

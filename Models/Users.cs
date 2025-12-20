@@ -24,10 +24,11 @@ namespace gestion_restaurant.Models
         [Column("password")]
         public string Password { get; set; }
 
+        // [Column("role")]
+        // public string Role { get; set; }
         [Column("role")]
-        public string Role { get; set; }
-
-        [Column("type_user")]
+        public RoleType Role { get; set; }
+        [Column("type_user",TypeName ="role_type")]
         public string TypeUser { get; set; }
 
         [Column("created_at")]

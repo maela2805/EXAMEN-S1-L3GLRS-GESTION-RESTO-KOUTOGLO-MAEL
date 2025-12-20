@@ -100,8 +100,12 @@ namespace gestion_restaurant.Data
                 .WithOne(c => c.Livraison)
                 .HasForeignKey<Livraison>(l => l.CommandeId)
                 .OnDelete(DeleteBehavior.Cascade);
+                
 
-        }
+            modelBuilder.Entity<User>()
+                    .Property(u => u.Role)
+                    .HasColumnType("role_type");
+                    }
 
     }
 }

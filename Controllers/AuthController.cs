@@ -1,4 +1,5 @@
 using gestion_restaurant.Data;
+using gestion_restaurant.Models;
 using gestion_restaurant.Models.Enums;
 using gestion_restaurant.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,13 @@ namespace gestion_restaurant.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -43,6 +51,39 @@ namespace gestion_restaurant.Controllers
 
             return RedirectToAction("Accueil", "Client");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            var exists = await _context.Users
+                .AnyAsync(u => u.Login == model.Login);
+
+            if (exists)
+            {
+                ViewBag.Error = "Ce login existe déjà";
+                return View(model);
+            }
+
+            var user = new User
+            {
+                Nom = model.Nom,
+                Prenom = model.Prenom,
+                Telephone = model.Telephone,
+                Login = model.Login,
+                Password = model.Password, 
+                Role = RoleType.CLIENT,          
+                TypeUser = "CLIENT",
+                CreatedAt = DateTime.UtcNow
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Login");
+        }
+
 
 
         public IActionResult Logout()

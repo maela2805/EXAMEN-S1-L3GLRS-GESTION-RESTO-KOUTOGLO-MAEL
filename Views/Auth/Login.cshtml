@@ -20,7 +20,9 @@
         <label>PASSWORD</label>
         <input asp-for="Password" type="password" />
 
-        <a href="#" class="create-account">Créer un compte</a>
+        <a asp-action="Register" asp-controller="Auth" class="create-account">
+    Créer un compte
+</a>
 
         <button type="submit">Se connecter</button>
     </form>

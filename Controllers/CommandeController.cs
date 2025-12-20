@@ -156,9 +156,7 @@ namespace gestion_restaurant.Controllers
                 return RedirectToAction("Login", "Auth");
 
             var typeLivraison = HttpContext.Session.GetString("TYPE_LIVRAISON");
-            var modePaiement = Enum.Parse<ModePaiement>(
-                HttpContext.Session.GetString("MODE_PAIEMENT")
-            );
+            var modePaiement = Enum.Parse<ModePaiement>(HttpContext.Session.GetString("MODE_PAIEMENT"));
 
             decimal total = cart.Sum(i => i.Total);
             var commande = new Commande
