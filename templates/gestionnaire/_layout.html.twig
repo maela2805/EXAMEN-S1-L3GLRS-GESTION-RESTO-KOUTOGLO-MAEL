@@ -18,10 +18,21 @@
                 <a class="nav-link" href="#">🧭 Tableau de bord</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ path('gestionnaire_burgers') }}">🍔 Burgers</a>
+                <a class="nav-link {{ app.request.attributes.get('_route') starts with 'gestionnaire_burger' ? 'active' : '' }}"
+                href="{{ path('gestionnaire_burgers') }}">
+                    🍔 Burgers
+                </a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="#">📦 Menus</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">🧂 Compléments</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">📦 Menus</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ app.request.attributes.get('_route') starts with 'gestionnaire_complement' ? 'active' : '' }}"
+                href="{{ path('gestionnaire_complements') }}">
+                    🧂 Compléments
+                </a>
+            </li>
+
             <li class="nav-item"><a class="nav-link" href="#">📦 Commandes</a></li>
             <li class="nav-item"><a class="nav-link" href="#">📍 Zones</a></li>
             <li class="nav-item"><a class="nav-link" href="#">🛵 Livreurs</a></li>

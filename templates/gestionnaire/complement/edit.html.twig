@@ -1,6 +1,6 @@
 {% extends 'gestionnaire/_layout.html.twig' %}
 
-{% block title %}Modifier un burger{% endblock %}
+{% block title %}Modifier un complément{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-center" style="min-height:80vh">
@@ -8,17 +8,17 @@
         <div class="card-body p-4">
 
             <h4 class="text-center mb-4 fw-bold">
-                <i class="bi bi-pencil-square"></i> Modifier le burger
+                <i class="bi bi-pencil-square"></i> Modifier le complément
             </h4>
 
             <form method="post" enctype="multipart/form-data">
 
                 <div class="mb-3">
-                    <label class="form-label">Nom du burger</label>
+                    <label class="form-label">Nom</label>
                     <input type="text"
                            name="nom"
                            class="form-control"
-                           value="{{ product.nom }}"
+                           value="{{ complement.nom }}"
                            required>
                 </div>
 
@@ -27,32 +27,37 @@
                     <input type="number"
                            name="prix"
                            class="form-control"
-                           value="{{ product.prix }}"
+                           value="{{ complement.prix }}"
                            required>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea name="description"
-                              class="form-control"
-                              rows="3">{{ product.description }}</textarea>
-                </div>
+                {% if complement.typecomplement == 'FRITE' %}
+                    <div class="mb-3">
+                        <label class="form-label">Taille</label>
+                        <input type="text"
+                               name="taille"
+                               class="form-control"
+                               value="{{ frite.taille }}">
+                    </div>
+                {% endif %}
 
-                {% if product.image %}
-                    <div class="mb-3 text-center">
-                        <img src="{{ product.image }}"
-                             class="img-thumbnail"
-                             style="max-height:150px">
+                {% if complement.typecomplement == 'BOISSON' %}
+                    <div class="mb-3">
+                        <label class="form-label">Volume</label>
+                        <input type="text"
+                               name="volume"
+                               class="form-control"
+                               value="{{ boisson.volume }}">
                     </div>
                 {% endif %}
 
                 <div class="mb-4">
-                    <label class="form-label">Nouvelle image (optionnel)</label>
+                    <label class="form-label">Image</label>
                     <input type="file" name="image" class="form-control">
                 </div>
 
                 <div class="d-flex justify-content-between">
-                    <a href="{{ path('gestionnaire_burgers') }}"
+                    <a href="{{ path('gestionnaire_complements') }}"
                        class="btn btn-outline-secondary">
                         Annuler
                     </a>

@@ -1,0 +1,89 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold">Compléments</h4>
+        <p class="text-muted mb-0">Gérez les frites et les boissons</p>
+    </div>
+
+    <a href="{{ path('gestionnaire_complement_new') }}"
+       class="btn btn-warning text-white fw-bold">
+        Ajouter complément
+    </a>
+</div>
+
+<div class="d-flex align-items-center gap-2 mb-4">
+    <button class="btn btn-sm btn-warning text-white filter-btn" data-type="ALL">Tout</button>
+    <button class="btn btn-sm btn-outline-warning filter-btn" data-type="FRITE">Frites</button>
+    <button class="btn btn-sm btn-outline-warning filter-btn" data-type="BOISSON">Boisson</button>
+</div>
+
+<div class="row g-4" id="complement-list">
+    {% for c in complements %}
+        <div class="col-md-3 complement-card" data-type="{{ c.typecomplement }}">
+            <div class="card h-100 border-0 shadow-sm">
+                <img src="{{ c.image }}"
+                     class="card-img-top"
+                     style="height:160px; object-fit:cover">
+
+                <div class="card-body">
+                    <h6 class="fw-bold mb-1">{{ c.nom }}</h6>
+                    <p class="text-warning fw-bold mb-1">
+                        {{ c.prix }} FCFA
+                    </p>
+
+                    <small class="text-muted">
+                        {{ c.typecomplement }}
+                    </small>
+
+                    <div class="d-flex justify-content-end gap-2 mt-3">
+
+                        {# MODIFIER #}
+                        <a href="{{ path('gestionnaire_complement_edit', { id: c.id }) }}"
+                        class="btn btn-outline-secondary btn-sm">
+                            Modifier
+                        </a>
+
+                        {# ARCHIVER #}
+                        <form method="post"
+                            action="{{ path('gestionnaire_complement_delete', { id: c.id }) }}"
+                            onsubmit="return confirm('Voulez-vous archiver ce complément ?')">
+                            <button type="submit"
+                                    class="btn btn-outline-danger btn-sm">
+                                Archiver
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const type = btn.dataset.type;
+
+        document.querySelectorAll('.complement-card').forEach(card => {
+            if (type === 'ALL' || card.dataset.type === type) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('btn-warning', 'text-white');
+            b.classList.add('btn-outline-warning');
+        });
+
+        btn.classList.add('btn-warning', 'text-white');
+        btn.classList.remove('btn-outline-warning');
+    });
+});
+</script>
+{% endblock %}

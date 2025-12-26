@@ -5,9 +5,10 @@ framework:
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
-    #esi: true
-    #fragments: true
+    trusted_proxies: '127.0.0.1'
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-proto']
 
+# Configuration spécifique aux tests
 when@test:
     framework:
         test: true
