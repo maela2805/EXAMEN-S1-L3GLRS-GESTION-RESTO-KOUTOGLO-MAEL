@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+
 #[Route('/gestionnaire/burgers')]
 class BurgerController extends AbstractController
 {
@@ -46,12 +47,6 @@ class BurgerController extends AbstractController
         ]);
     }
 
-    // #[Route('/edit/{id}', name: 'gestionnaire_burger_edit')]
-    // public function edit(int $id): Response
-    // {
-    //     return $this->render('gestionnaire/burger/edit.html.twig');
-    // }
-
     #[Route('/edit/{id}', name: 'gestionnaire_burger_edit')]
     public function edit(int $id, Request $request): Response
     {
@@ -73,13 +68,13 @@ class BurgerController extends AbstractController
             );
 
             return $this->redirectToRoute('gestionnaire_burgers');
-    }
+        }
 
-    return $this->render('gestionnaire/burger/edit.html.twig', [
-        'burger'  => $burger,
-        'product' => $product,
-    ]);
-}
+        return $this->render('gestionnaire/burger/edit.html.twig', [
+            'burger'  => $burger,
+            'product' => $product,
+        ]);
+    }
 
 
     #[Route('/delete/{id}', name: 'gestionnaire_burger_delete', methods: ['POST'])]
