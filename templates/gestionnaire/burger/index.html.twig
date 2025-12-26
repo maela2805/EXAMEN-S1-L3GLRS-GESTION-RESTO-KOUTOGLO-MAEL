@@ -1,0 +1,54 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block title %}Burgers{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h3>Burgers</h3>
+        <small class="text-muted">Gérez votre catalogue de burgers</small>
+    </div>
+
+    <a href="{{ path('gestionnaire_burger_new') }}" class="btn btn-warning">
+        Ajouter Burger
+    </a>
+</div>
+
+<input type="text" class="form-control mb-4" placeholder="Rechercher un burger...">
+
+<div class="row g-4">
+    {% for burger in burgers %}
+        <div class="col-md-3">
+            <div class="card h-100">
+                <img src="{{ burger.product.image }}"
+                     class="card-img-top"
+                     style="height:160px;object-fit:cover">
+
+                <div class="card-body">
+                    <h6 class="fw-bold">
+                        {{ burger.product.nom }}
+                    </h6>
+
+                    <p class="text-warning fw-bold">
+                        {{ burger.product.prix }} FCFA
+                    </p>
+
+                    <div class="d-flex gap-2">
+                        <a href="{{ path('gestionnaire_burger_edit', {id: burger.id}) }}"
+                           class="btn btn-sm btn-outline-secondary">
+                            Modifier
+                        </a>
+
+                        <a href="{{ path('gestionnaire_burger_delete', {id: burger.id}) }}"
+                           class="btn btn-sm btn-outline-danger"
+                           onclick="return confirm('Supprimer ce burger ?')">
+                            Archiver
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

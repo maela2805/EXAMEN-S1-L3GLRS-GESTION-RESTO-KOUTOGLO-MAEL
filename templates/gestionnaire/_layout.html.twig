@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div>
+
+    {# SIDEBAR FIXE #}
+    <aside class="sidebar">
+        <div class="mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <div class="logo">BB</div>
+                <strong>Brasil Burger</strong>
+            </div>
+            <small class="text-secondary">Gestionnaire</small>
+        </div>
+
+        <ul class="nav flex-column gap-1">
+            <li class="nav-item">
+                <a class="nav-link" href="#">🧭 Tableau de bord</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ path('gestionnaire_burgers') }}">🍔 Burgers</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">📦 Menus</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">🧂 Compléments</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">📦 Commandes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">📍 Zones</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">🛵 Livreurs</a></li>
+        </ul>
+    </aside>
+
+    {# CONTENU QUI DÉFILE #}
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+</div>
+{% endblock %}

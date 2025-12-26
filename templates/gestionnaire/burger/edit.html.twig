@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un burger{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h2>✏️ Modifier le burger</h2>
+
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+
+        <div class="mb-3">
+            <label class="form-label">Nom du burger</label>
+            <input type="text"
+                   name="nom"
+                   class="form-control"
+                   value="{{ product.nom }}"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Prix (FCFA)</label>
+            <input type="number"
+                   name="prix"
+                   class="form-control"
+                   value="{{ product.prix }}"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea name="description"
+                      class="form-control"
+                      rows="3">{{ product.description }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Image actuelle</label><br>
+            <img src="{{ product.image }}"
+                 width="200"
+                 class="img-thumbnail mb-2">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Nouvelle image (optionnel)</label>
+            <input type="file" name="image" class="form-control">
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ path('gestionnaire_burgers') }}" class="btn btn-secondary">
+                Retour
+            </a>
+
+            <button class="btn btn-primary">
+                Modifier
+            </button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
