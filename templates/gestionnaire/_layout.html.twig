@@ -14,32 +14,70 @@
         </div>
 
         <ul class="nav flex-column gap-1">
+
             <li class="nav-item">
-                <a class="nav-link" href="#">🧭 Tableau de bord</a>
+                <a class="nav-link" href="#">
+                    🧭 Tableau de bord
+                </a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ app.request.attributes.get('_route') starts with 'gestionnaire_burger' ? 'active' : '' }}"
-                href="{{ path('gestionnaire_burgers') }}">
+                <a class="nav-link
+                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_burger' ? 'active' : '' }}"
+                   href="{{ path('gestionnaire_burgers') }}">
                     🍔 Burgers
                 </a>
             </li>
+
+            {# MENU (désactivé pour l’instant) #}
             <li class="nav-item">
-                <a class="nav-link" href="#">📦 Menus</a>
+                <span class="nav-link text-muted" style="cursor:not-allowed;">
+                    📦 Menus
+                </span>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link {{ app.request.attributes.get('_route') starts with 'gestionnaire_complement' ? 'active' : '' }}"
-                href="{{ path('gestionnaire_complements') }}">
+                <a class="nav-link
+                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_complement' ? 'active' : '' }}"
+                   href="{{ path('gestionnaire_complements') }}">
                     🧂 Compléments
                 </a>
             </li>
 
-            <li class="nav-item"><a class="nav-link" href="#">📦 Commandes</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">📍 Zones</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">🛵 Livreurs</a></li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    📦 Commandes
+                </a>
+            </li>
+
+            {# ZONES #}
+            <li class="nav-item">
+                <a class="nav-link
+                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_zone' ? 'active' : '' }}"
+                   href="{{ path('gestionnaire_zones') }}">
+                    📍 Zones
+                </a>
+            </li>
+
+            {# 🏘️ QUARTIERS #}
+            <li class="nav-item">
+                <a class="nav-link
+                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_quartier' ? 'active' : '' }}"
+                   href="{{ path('gestionnaire_quartiers') }}">
+                    🏘️ Quartiers
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    🛵 Livreurs
+                </a>
+            </li>
+
         </ul>
     </aside>
 
-    {# CONTENU QUI DÉFILE #}
+    {# CONTENU #}
     <main class="main-content">
         {% block content %}{% endblock %}
     </main>

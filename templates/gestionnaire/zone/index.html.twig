@@ -1,0 +1,70 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block title %}Zones{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold">Zones</h4>
+        <small class="text-muted">Gérez vos zones de livraison</small>
+    </div>
+
+    <a href="{{ path('gestionnaire_zone_new') }}"
+       class="btn btn-warning">
+        Ajouter zone
+    </a>
+</div>
+
+<div class="mb-4" style="max-width: 300px;">
+    <input type="text"
+           class="form-control"
+           placeholder="Rechercher une zone...">
+</div>
+
+<div class="row g-4">
+    {% for zone in zones %}
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-start">
+                        <h6 class="fw-bold mb-2">Zone {{ zone.id }}</h6>
+                    </div>
+
+                    <div class="mb-2">
+                        {% for quartier in zone.quartiers %}
+                            <span class="badge bg-warning text-dark me-1">
+                                {{ quartier.libelle }}
+                            </span>
+                        {% else %}
+                            <small class="text-muted">Aucun quartier</small>
+                        {% endfor %}
+                    </div>
+
+                    <div class="mt-2">
+                        <small class="text-muted">Tarif</small><br>
+                        <strong class="text-warning">
+                            {{ zone.tarif }} FCFA
+                        </strong>
+                    </div>
+                    <div class="d-flex gap-2 mt-2">
+                        <a href="{{ path('gestionnaire_zone_edit', {id: zone.id}) }}"
+                        class="btn btn-sm btn-outline-secondary">
+                            Modifier
+                        </a>
+
+                        <form method="post"
+                                action="{{ path('gestionnaire_zone_delete', {id: zone.id}) }}"
+                                onsubmit="return confirm('Supprimer cette zone ?')">
+                            <button class="btn btn-sm btn-outline-danger">
+                                Archiver
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
