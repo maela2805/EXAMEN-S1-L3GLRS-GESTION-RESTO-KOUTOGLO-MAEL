@@ -33,7 +33,6 @@ class ComplementType extends AbstractType
                 ]
             ])
 
-            // Champs dynamiques (non mappés)
             ->add('taille', TextType::class, [
                 'label' => 'Taille (ex: Petite, Moyenne)',
                 'mapped' => false,

@@ -21,6 +21,7 @@
                 </a>
             </li>
 
+            {# 🍔 BURGERS #}
             <li class="nav-item">
                 <a class="nav-link
                    {{ app.request.attributes.get('_route') starts with 'gestionnaire_burger' ? 'active' : '' }}"
@@ -29,13 +30,16 @@
                 </a>
             </li>
 
-            {# MENU (désactivé pour l’instant) #}
+            {# 📦 MENUS #}
             <li class="nav-item">
-                <span class="nav-link text-muted" style="cursor:not-allowed;">
+                <a class="nav-link
+                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_menu' ? 'active' : '' }}"
+                   href="{{ path('gestionnaire_menus') }}">
                     📦 Menus
-                </span>
+                </a>
             </li>
 
+            {# 🧂 COMPLÉMENTS #}
             <li class="nav-item">
                 <a class="nav-link
                    {{ app.request.attributes.get('_route') starts with 'gestionnaire_complement' ? 'active' : '' }}"
@@ -50,7 +54,7 @@
                 </a>
             </li>
 
-            {# ZONES #}
+            {# 📍 ZONES #}
             <li class="nav-item">
                 <a class="nav-link
                    {{ app.request.attributes.get('_route') starts with 'gestionnaire_zone' ? 'active' : '' }}"
