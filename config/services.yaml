@@ -23,4 +23,7 @@ services:
     App\Service\Burger\BurgerServiceInterface:
         alias: App\Service\Burger\BurgerService
 
+    App\Services\Livreur\LivreurServiceInterface:
+        alias: App\Services\Livreur\LivreurService
+
     

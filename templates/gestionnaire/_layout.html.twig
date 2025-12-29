@@ -15,70 +15,75 @@
 
         <ul class="nav flex-column gap-1">
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    🧭 Tableau de bord
-                </a>
-            </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            🧭 Tableau de bord
+        </a>
+    </li>
 
-            {# 🍔 BURGERS #}
-            <li class="nav-item">
-                <a class="nav-link
-                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_burger' ? 'active' : '' }}"
-                   href="{{ path('gestionnaire_burgers') }}">
-                    🍔 Burgers
-                </a>
-            </li>
+    {# 🍔 BURGERS #}
+    <li class="nav-item">
+        <a class="nav-link
+           {{ app.request.attributes.get('_route') starts with 'gestionnaire_burger' ? 'active' : '' }}"
+           href="{{ path('gestionnaire_burgers') }}">
+            🍔 Burgers
+        </a>
+    </li>
 
-            {# 📦 MENUS #}
-            <li class="nav-item">
-                <a class="nav-link
-                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_menu' ? 'active' : '' }}"
-                   href="{{ path('gestionnaire_menus') }}">
-                    📦 Menus
-                </a>
-            </li>
+    {# 📦 MENUS #}
+    <li class="nav-item">
+        <a class="nav-link
+           {{ app.request.attributes.get('_route') starts with 'gestionnaire_menu' ? 'active' : '' }}"
+           href="{{ path('gestionnaire_menus') }}">
+            📦 Menus
+        </a>
+    </li>
 
-            {# 🧂 COMPLÉMENTS #}
-            <li class="nav-item">
-                <a class="nav-link
-                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_complement' ? 'active' : '' }}"
-                   href="{{ path('gestionnaire_complements') }}">
-                    🧂 Compléments
-                </a>
-            </li>
+    {# 🧂 COMPLÉMENTS #}
+    <li class="nav-item">
+        <a class="nav-link
+           {{ app.request.attributes.get('_route') starts with 'gestionnaire_complement' ? 'active' : '' }}"
+           href="{{ path('gestionnaire_complements') }}">
+            🧂 Compléments
+        </a>
+    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    📦 Commandes
-                </a>
-            </li>
+    {# 📦 COMMANDES #}
+    <li class="nav-item">
+        <a class="nav-link" href="#">
+            📦 Commandes
+        </a>
+    </li>
 
-            {# 📍 ZONES #}
-            <li class="nav-item">
-                <a class="nav-link
-                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_zone' ? 'active' : '' }}"
-                   href="{{ path('gestionnaire_zones') }}">
-                    📍 Zones
-                </a>
-            </li>
+    {# 📍 ZONES #}
+    <li class="nav-item">
+        <a class="nav-link
+           {{ app.request.attributes.get('_route') starts with 'gestionnaire_zone' ? 'active' : '' }}"
+           href="{{ path('gestionnaire_zones') }}">
+            📍 Zones
+        </a>
+    </li>
 
-            {# 🏘️ QUARTIERS #}
-            <li class="nav-item">
-                <a class="nav-link
-                   {{ app.request.attributes.get('_route') starts with 'gestionnaire_quartier' ? 'active' : '' }}"
-                   href="{{ path('gestionnaire_quartiers') }}">
-                    🏘️ Quartiers
-                </a>
-            </li>
+    {# 🏘️ QUARTIERS #}
+    <li class="nav-item">
+        <a class="nav-link
+           {{ app.request.attributes.get('_route') starts with 'gestionnaire_quartier' ? 'active' : '' }}"
+           href="{{ path('gestionnaire_quartiers') }}">
+            🏘️ Quartiers
+        </a>
+    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    🛵 Livreurs
-                </a>
-            </li>
+    {# 🛵 LIVREURS #}
+    <li class="nav-item">
+        <a class="nav-link
+           {{ app.request.attributes.get('_route') starts with 'gestionnaire_livreur' ? 'active' : '' }}"
+           href="{{ path('gestionnaire_livreurs') }}">
+            🛵 Livreurs
+        </a>
+    </li>
 
-        </ul>
+</ul>
+
     </aside>
 
     {# CONTENU #}

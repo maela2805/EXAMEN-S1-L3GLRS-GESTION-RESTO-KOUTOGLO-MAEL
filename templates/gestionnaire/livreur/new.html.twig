@@ -1,0 +1,55 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+
+    <div class="card shadow-sm w-100" style="max-width: 500px;">
+        <div class="card-body">
+
+            <h4 class="fw-bold mb-4 text-center">
+                ➕ Ajouter un livreur
+            </h4>
+
+            {{ form_start(form) }}
+
+            <div class="mb-3">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.prenom) }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.telephone) }}
+                {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.login) }}
+                {{ form_widget(form.login, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.password) }}
+                {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-4">
+                {{ form_label(form.matricule_moto) }}
+                {{ form_widget(form.matricule_moto, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <button class="btn btn-warning w-100 fw-bold">
+                Enregistrer
+            </button>
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
