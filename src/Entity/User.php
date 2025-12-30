@@ -47,10 +47,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->created_at = new \DateTime();
     }
 
-    // =====================
-    // REQUIRED BY SYMFONY
-    // =====================
-
     public function getUserIdentifier(): string
     {
         return $this->login;
@@ -58,17 +54,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return [$this->role];
+        return ['ROLE_' . $this->role];
     }
+
 
     public function eraseCredentials(): void
     {
-        // rien à faire
+        
     }
 
-    // =====================
-    // GETTERS / SETTERS
-    // =====================
 
     public function getId(): ?int
     {
