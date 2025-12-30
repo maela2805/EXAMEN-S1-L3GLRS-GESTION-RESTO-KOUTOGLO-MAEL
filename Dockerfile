@@ -9,16 +9,18 @@ RUN apt-get update && apt-get install -y \
 # Apache rewrite
 RUN a2enmod rewrite
 
-# Dossier de travail
 WORKDIR /var/www/html
 
 # Copier le projet
 COPY . .
 
+# ✅ .env vide requis par Symfony (Render injecte les vraies variables)
+RUN touch .env
+
 # Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installer dépendances PROD (SANS scripts Symfony)
+# Installer dépendances PROD (sans scripts)
 RUN composer install \
     --no-dev \
     --optimize-autoloader \
@@ -31,7 +33,7 @@ RUN mkdir -p var/cache var/log
 # Permissions
 RUN chown -R www-data:www-data var
 
-# Apache → dossier public Symfony
+# Apache → dossier public
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
     /etc/apache2/sites-available/000-default.conf
 
