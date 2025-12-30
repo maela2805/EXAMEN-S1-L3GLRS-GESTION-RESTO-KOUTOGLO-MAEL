@@ -15,11 +15,17 @@ WORKDIR /var/www/html
 # Copier le projet
 COPY . .
 
+# Créer un .env vide (obligatoire pour Symfony)
+RUN touch .env
+
 # Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installer dépendances PROD
-RUN composer install --no-dev --optimize-autoloader
+# Installer dépendances PROD (sans scripts Symfony)
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader \
+    --no-scripts
 
 # Permissions Symfony
 RUN chown -R www-data:www-data var
