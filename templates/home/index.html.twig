@@ -1,11 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f9fa;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-csharp {
+            background-color: #6f42c1;
+        }
+
+        .btn-symfony {
+            background-color: #198754;
+        }
+    </style>
 </head>
 <body>
-    <h1>Symfony fonctionne 🎉</h1>
-    <a href="https://examen-s1-l3glrs-gestion-resto-koutoglo.onrender.com/">CCCCCCCC</a>
+
+    <div class="container">
+        <h1>Bienvenue 👋</h1>
+
+        <div class="buttons">
+            <a
+                class="btn btn-csharp"
+                href="https://examen-s1-l3glrs-gestion-resto-koutoglo.onrender.com/"
+                target="_blank"
+            >
+                🚀 Application C#
+            </a>
+
+            <a
+                class="btn btn-symfony"
+                href="/login"
+            >
+                🔐 Connexion Symfony
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>
