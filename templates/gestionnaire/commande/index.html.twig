@@ -1,0 +1,97 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block content %}
+<h3 class="fw-bold mb-4">Commandes</h3>
+
+{# 🔍 FILTRES #}
+<form method="get" class="row g-2 mb-4">
+    <div class="col-md-3">
+        <select name="statut" class="form-select">
+            <option value="">Tous les statuts</option>
+            <option value="ENCOURS" {{ filters.statut == 'ENCOURS' ? 'selected' : '' }}>En cours</option>
+            <option value="LIVRE" {{ filters.statut == 'LIVRE' ? 'selected' : '' }}>Livrée</option>
+            <option value="TERMINE" {{ filters.statut == 'TERMINE' ? 'selected' : '' }}>Terminée</option>
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+        <button class="btn btn-warning w-100">
+            🔎 Filtrer
+        </button>
+    </div>
+</form>
+
+{# 📋 TABLE #}
+<table class="table table-hover align-middle">
+    <thead class="table-light">
+        <tr>
+            <th>Id</th>
+            <th>Client</th>
+            <th>Date</th>
+            <th>Montant</th>
+            <th>Statut</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for c in commandes %}
+        <tr>
+            <td>#{{ c.id }}</td>
+
+            <td>
+                {{ c.client ? c.client.prenom : '-' }}
+            </td>
+
+            <td>
+                {{ c.dateCommande|date('d/m/Y H:i') }}
+            </td>
+
+            <td>
+                <strong>{{ c.montantTotal }}</strong> FCFA
+            </td>
+
+            <td>
+                {% set label =
+                    c.statut == 'ENCOURS' ? 'En cours' :
+                    c.statut == 'LIVRE' ? 'Livrée' :
+                    c.statut == 'TERMINE' ? 'Terminée' : c.statut
+                %}
+
+                <span class="badge bg-info">
+                    {{ label }}
+                </span>
+
+
+            </td>
+
+            <td class="text-center">
+                <form method="post"
+                      action="{{ path('gestionnaire_commande_statut', {id: c.id}) }}"
+                      class="d-flex justify-content-center gap-1">
+
+                    <select name="statut"
+                            class="form-select form-select-sm w-auto">
+                        <option value="ENCOURS">En cours</option>
+                        <option value="LIVRE">Livrée</option>
+                        <option value="TERMINE">Terminée</option>
+                    </select>
+
+                    <button class="btn btn-sm btn-outline-success"
+                            title="Valider">
+                        ✔
+                    </button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="6" class="text-center text-muted py-4">
+                Aucune commande trouvée
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

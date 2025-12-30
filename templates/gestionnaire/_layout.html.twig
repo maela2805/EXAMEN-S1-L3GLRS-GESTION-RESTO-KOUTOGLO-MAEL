@@ -50,10 +50,15 @@
 
     {# 📦 COMMANDES #}
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link
+        {{ app.request.attributes.get('_route') starts with 'gestionnaire_commandes'
+            or app.request.attributes.get('_route') starts with 'gestionnaire_livraisons'
+            ? 'active' : '' }}"
+        href="{{ path('gestionnaire_commandes') }}">
             📦 Commandes
         </a>
     </li>
+
 
     {# 📍 ZONES #}
     <li class="nav-item">
