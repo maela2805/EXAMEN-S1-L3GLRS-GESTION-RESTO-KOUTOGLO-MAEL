@@ -1,51 +1,12 @@
 <?php
 
-// use App\Kernel;
-
-// require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
-
-// return function (array $context) {
-//     return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
-// }; 
-// 🔑 Forcer l'environnement PROD si non défini (Render)
-// use App\Kernel;
-
-// $_SERVER['APP_ENV'] = $_ENV['APP_ENV'] ?? 'prod';
-// $_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] ?? '0';
-
-// require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
-
-// return function (array $context) {
-//     return new Kernel(
-//         $context['APP_ENV'],
-//         (bool) $context['APP_DEBUG']
-//     );
-// };
-
-// use App\Kernel;
-
-// require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
-
-// return function (array $context) {
-//     return new Kernel(
-//         $context['APP_ENV'] ?? 'prod',
-//         (bool) ($context['APP_DEBUG'] ?? false)
-//     );
-// };
-
-
 use App\Kernel;
 
-// 🔥 FORCER PROD AVANT Symfony Runtime
-$_SERVER['APP_ENV'] = $_ENV['APP_ENV'] ?? 'prod';
-$_SERVER['APP_DEBUG'] = $_ENV['APP_DEBUG'] ?? '0';
+$_SERVER['APP_ENV'] = 'dev';
+$_SERVER['APP_DEBUG'] = true;
 
-require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
+require dirname(__DIR__).'/vendor/autoload_runtime.php';
 
 return function (array $context) {
-    return new Kernel(
-        $_SERVER['APP_ENV'],
-        (bool) $_SERVER['APP_DEBUG']
-    );
+    return new Kernel('dev', true);
 };
-
