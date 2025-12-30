@@ -10,12 +10,15 @@ WORKDIR /var/www/html
 
 COPY . .
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+# SOLUTION UNIQUE : Créer .env minimal
+RUN echo "APP_ENV=prod" > .env && echo "APP_DEBUG=0" >> .env
 
 RUN mkdir -p var/cache var/log \
-    && chown -R www-data:www-data var
+    && chmod -R 777 var
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
     /etc/apache2/sites-available/000-default.conf \
@@ -23,3 +26,5 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
     /etc/apache2/apache2.conf
 
 EXPOSE 80
+
+CMD ["apache2-foreground"]
