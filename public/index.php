@@ -1,12 +1,23 @@
 <?php
 
+// use App\Kernel;
+
+// $_SERVER['APP_ENV'] = 'dev';
+// $_SERVER['APP_DEBUG'] = true;
+
+// require dirname(__DIR__).'/vendor/autoload_runtime.php';
+
+// return function (array $context) {
+//     return new Kernel('dev', true);
+// };
+
 use App\Kernel;
 
-$_SERVER['APP_ENV'] = 'dev';
-$_SERVER['APP_DEBUG'] = true;
-
-require dirname(__DIR__).'/vendor/autoload_runtime.php';
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
 return function (array $context) {
-    return new Kernel('dev', true);
+    return new Kernel(
+        $_SERVER['APP_ENV'] ?? 'prod',
+        (bool) ($_SERVER['APP_DEBUG'] ?? false)
+    );
 };
