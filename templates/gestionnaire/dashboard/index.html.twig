@@ -1,0 +1,75 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block content %}
+<h3 class="fw-bold mb-4">Tableau de bord</h3>
+
+{# ================= CARTES STATS ================= #}
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="stat-card bg-warning">
+            <div>
+                <small>Commandes en cours</small>
+                <h2>{{ enCours }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card bg-success">
+            <div>
+                <small>Commandes terminées</small>
+                <h2>{{ terminees }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card bg-info">
+            <div>
+                <small>Recette totale</small>
+                <h2>{{ recette }} FCFA</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="stat-card bg-secondary">
+            <div>
+                <small>Commandes livrées</small>
+                <h2>{{ terminees }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header fw-semibold">
+        Commandes récentes
+    </div>
+
+    <ul class="list-group list-group-flush">
+        {% for c in commandesRecentes %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ c.client.prenom }}</strong><br>
+                    <span class="text-muted">{{ c.montantTotal }} FCFA</span>
+                </div>
+
+                <span class="badge
+                    {% if c.statut == 'ENCOURS' %} bg-warning
+                    {% elseif c.statut == 'TERMINE' %} bg-success
+                    {% else %} bg-secondary {% endif %}
+                ">
+                    {{ c.statut }}
+                </span>
+            </li>
+        {% else %}
+            <li class="list-group-item text-center text-muted">
+                Aucune commande récente
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -16,10 +16,13 @@
         <ul class="nav flex-column gap-1">
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
-            🧭 Tableau de bord
-        </a>
-    </li>
+    <a class="nav-link
+       {{ app.request.attributes.get('_route') starts with 'gestionnaire_dashboard' ? 'active' : '' }}"
+       href="{{ path('gestionnaire_dashboard') }}">
+        🧭 Tableau de bord
+    </a>
+</li>
+
 
     {# 🍔 BURGERS #}
     <li class="nav-item">
