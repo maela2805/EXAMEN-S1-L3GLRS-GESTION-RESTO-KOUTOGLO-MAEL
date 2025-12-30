@@ -1,0 +1,80 @@
+{% extends 'gestionnaire/_layout.html.twig' %}
+
+{% block content %}
+<h3 class="fw-bold mb-4">Créer une livraison</h3>
+
+<form method="post" action="{{ path('creer_livraison') }}">
+
+    {# 🔹 BARRE DE CONTRÔLE (ZONE + LIVREUR + ACTION) #}
+    <div class="row align-items-end g-3 mb-4">
+
+        <div class="col-md-4">
+            <label class="form-label fw-semibold">Zone de livraison</label>
+            <select class="form-select" name="zone" required>
+                <option value="">— Choisir une zone —</option>
+                {% for z in zones %}
+                    <option value="{{ z.id }}">
+                        Zone {{ z.id }} – {{ z.tarif }} FCFA
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label fw-semibold">Livreur</label>
+            <select class="form-select" name="livreur" required>
+                <option value="">— Choisir un livreur —</option>
+                {% for l in livreurs %}
+                    <option value="{{ l.id }}">
+                        {{ l.user.prenom }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-4 d-grid">
+            <button class="btn btn-success">
+                🚚 Créer la livraison
+            </button>
+        </div>
+
+    </div>
+
+    {# 🔹 TABLE DES COMMANDES #}
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Commande</th>
+                <th>Client</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in commandes %}
+            <tr>
+                <td>
+                    <input type="checkbox"
+                           name="commandes[]"
+                           value="{{ c.id }}">
+                </td>
+                <td>#{{ c.id }}</td>
+                <td>{{ c.client.prenom }}</td>
+                <td>
+                    <span class="badge bg-secondary">
+                        {{ c.statut }}
+                    </span>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4" class="text-center text-muted">
+                    Aucune commande disponible
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</form>
+{% endblock %}

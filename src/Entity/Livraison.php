@@ -23,9 +23,9 @@ class Livraison
     #[ORM\JoinColumn(name: 'livreur_id', nullable: true)]
     private ?Livreur $livreur = null;
 
-    public function __construct()
+     public function __construct()
     {
-        $this->statut = 'EN_ATTENTE';
+        $this->statut = 'AFFECTEE';
     }
 
     public function getId(): ?int
@@ -41,6 +41,26 @@ class Livraison
     public function setLivreur(?Livreur $livreur): self
     {
         $this->livreur = $livreur;
+        return $this;
+    }
+    public function getStatut(): string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+        return $this;
+    }
+     public function getDateLivraison(): ?\DateTimeInterface
+    {
+        return $this->dateLivraison;
+    }
+
+    public function setDateLivraison(?\DateTimeInterface $dateLivraison): self
+    {
+        $this->dateLivraison = $dateLivraison;
         return $this;
     }
 }
