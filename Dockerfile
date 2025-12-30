@@ -15,22 +15,25 @@ WORKDIR /var/www/html
 # Copier le projet
 COPY . .
 
-# Créer un .env vide (obligatoire pour Symfony)
+# Créer un .env vide (obligatoire au build)
 RUN touch .env
 
 # Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installer dépendances PROD (sans scripts Symfony)
+# Installer dépendances PROD sans scripts
 RUN composer install \
     --no-dev \
     --optimize-autoloader \
     --no-scripts
 
-# Permissions Symfony
+# Créer dossiers Symfony
+RUN mkdir -p var/cache var/log
+
+# Permissions
 RUN chown -R www-data:www-data var
 
-# Apache → dossier public Symfony
+# Apache → public/
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
     /etc/apache2/sites-available/000-default.conf
 
