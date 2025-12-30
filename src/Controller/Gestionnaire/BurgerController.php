@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 
-#[Route('/gestionnaire/burgers')]
+#[Route('/')]
 class BurgerController extends AbstractController
 {
     public function __construct(
