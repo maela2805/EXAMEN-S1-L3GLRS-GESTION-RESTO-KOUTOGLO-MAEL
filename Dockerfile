@@ -10,25 +10,18 @@ WORKDIR /var/www/html
 
 COPY . .
 
-# Créer .env minimal pour le build
-RUN echo "APP_ENV=prod" > .env \
- && echo "APP_DEBUG=0" >> .env \
- && echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/data.db" >> .env
-
-# Créer le fichier SQLite pour éviter l'erreur
-RUN touch /var/www/html/var/data.db
-
+# Créer dossiers et .env
 RUN mkdir -p var/cache var/log \
-    && chmod -R 777 var
+    && chmod -R 777 var \
+    && echo "APP_ENV=prod" > .env \
+    && echo "APP_DEBUG=0" >> .env
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Installation sans les scripts problématiques
+# Utiliser --no-scripts pour éviter les erreurs
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
-# Puis exécuter cache:clear manuellement avec notre .env temporaire
-RUN php bin/console cache:clear --env=prod --no-debug --no-warmup
-
+# Config Apache
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' \
     /etc/apache2/sites-available/000-default.conf \
  && sed -i 's/AllowOverride None/AllowOverride All/g' \
