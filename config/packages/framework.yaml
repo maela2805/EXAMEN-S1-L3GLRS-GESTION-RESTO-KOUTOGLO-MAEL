@@ -1,11 +1,16 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
 
-    form:
-        csrf_protection:
-            enabled: true
-
+    # Note that the session will be started ONLY if you read or write from it.
     session: true
 
     trusted_proxies: '127.0.0.1'
     trusted_headers: ['x-forwarded-for', 'x-forwarded-proto']
+
+# Configuration spécifique aux tests
+when@test:
+    framework:
+        test: true
+        session:
+            storage_factory_id: session.storage.factory.mock_file
