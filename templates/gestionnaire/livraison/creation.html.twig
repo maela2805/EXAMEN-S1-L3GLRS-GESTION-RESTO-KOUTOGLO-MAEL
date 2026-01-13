@@ -75,6 +75,64 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-4">
+    <nav>
+        <ul class="pagination" id="pagination"></ul>
+    </nav>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const rowsPerPage = 5;
+    const tableBody = document.querySelector('table tbody');
+    const rows = Array.from(tableBody.querySelectorAll('tr'));
+    const pagination = document.getElementById('pagination');
+
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    let currentPage = 1;
+
+    function showPage(page) {
+        currentPage = page;
+
+        rows.forEach((row, index) => {
+            row.style.display =
+                index >= (page - 1) * rowsPerPage &&
+                index < page * rowsPerPage
+                    ? ''
+                    : 'none';
+        });
+
+        renderPagination();
+    }
+
+    function renderPagination() {
+        pagination.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.className = 'page-item ' + (i === currentPage ? 'active' : '');
+
+            const a = document.createElement('a');
+            a.className = 'page-link';
+            a.href = '#';
+            a.textContent = i;
+
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(i);
+            });
+
+            li.appendChild(a);
+            pagination.appendChild(li);
+        }
+    }
+
+    if (rows.length > 0) {
+        showPage(1);
+    }
+});
+</script>
+
 
 </form>
 {% endblock %}
