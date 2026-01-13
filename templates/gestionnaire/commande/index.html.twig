@@ -12,18 +12,15 @@
             <option value="LIVRE" {{ filters.statut == 'LIVRE' ? 'selected' : '' }}>Livrée</option>
             <option value="TERMINE" {{ filters.statut == 'TERMINE' ? 'selected' : '' }}>Terminée</option>
         </select>
-
     </div>
 
     <div class="col-md-2">
-        <button class="btn btn-warning w-100">
-            Filtrer
-        </button>
+        <button class="btn btn-warning w-100">Filtrer</button>
     </div>
 </form>
 
 {# 📋 TABLE #}
-<table class="table table-hover align-middle">
+<table class="table table-hover align-middle" id="commandesTable">
     <thead class="table-light">
         <tr>
             <th>Id</th>
@@ -39,49 +36,22 @@
     {% for c in commandes %}
         <tr>
             <td>#{{ c.id }}</td>
-
+            <td>{{ c.client ? c.client.prenom : '-' }}</td>
+            <td>{{ c.dateCommande|date('d/m/Y H:i') }}</td>
+            <td><strong>{{ c.montantTotal }}</strong> FCFA</td>
             <td>
-                {{ c.client ? c.client.prenom : '-' }}
+                <span class="badge bg-info">{{ c.statut }}</span>
             </td>
-
-            <td>
-                {{ c.dateCommande|date('d/m/Y H:i') }}
-            </td>
-
-            <td>
-                <strong>{{ c.montantTotal }}</strong> FCFA
-            </td>
-
-            <td>
-                {% set label =
-                    c.statut == 'ENCOURS' ? 'En cours' :
-                    c.statut == 'LIVRE' ? 'Livrée' :
-                    c.statut == 'TERMINE' ? 'Terminée' : c.statut
-                %}
-
-                <span class="badge bg-info">
-                    {{ label }}
-                </span>
-
-
-            </td>
-
             <td class="text-center">
                 <form method="post"
                       action="{{ path('gestionnaire_commande_statut', {id: c.id}) }}"
                       class="d-flex justify-content-center gap-1">
-
-                    <select name="statut"
-                            class="form-select form-select-sm w-auto">
+                    <select name="statut" class="form-select form-select-sm w-auto">
                         <option value="ENCOURS">En cours</option>
                         <option value="LIVRE">Livrée</option>
                         <option value="TERMINE">Terminée</option>
                     </select>
-
-                    <button class="btn btn-sm btn-outline-success"
-                            title="Valider">
-                        ✔
-                    </button>
+                    <button class="btn btn-sm btn-outline-success">✔</button>
                 </form>
             </td>
         </tr>
@@ -94,4 +64,51 @@
     {% endfor %}
     </tbody>
 </table>
+
+{# 🔢 PAGINATION #}
+<div class="d-flex justify-content-center mt-4">
+    <ul class="pagination" id="pagination"></ul>
+</div>
+
+{# 🧠 PAGINATION JS #}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const rowsPerPage = 5;
+    const rows = document.querySelectorAll('#commandesTable tbody tr');
+    const pagination = document.getElementById('pagination');
+
+    let currentPage = 1;
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+
+    function showPage(page) {
+        rows.forEach((row, index) => {
+            row.style.display =
+                index >= (page - 1) * rowsPerPage &&
+                index < page * rowsPerPage
+                    ? ''
+                    : 'none';
+        });
+    }
+
+    function renderPagination() {
+        pagination.innerHTML = '';
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            li.className = 'page-item ' + (i === currentPage ? 'active' : '');
+            li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            li.onclick = e => {
+                e.preventDefault();
+                currentPage = i;
+                showPage(i);
+                renderPagination();
+            };
+            pagination.appendChild(li);
+        }
+    }
+
+    showPage(currentPage);
+    renderPagination();
+});
+</script>
+
 {% endblock %}
